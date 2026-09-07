@@ -418,7 +418,12 @@ function setVoiceLanguage(lang) {
 
     const statusEl = document.getElementById('voiceRecognitionStatus');
     if (statusEl) {
-        const langNames = { 'en-US': 'English', 'hi-IN': 'Hindi (हिंदी)', 'te-IN': 'Telugu (తెలుగు)' };
+        const langNames = {
+            'en-US': 'English',
+            'hi-IN': 'हिंदी (Hindi)',
+            'mr-IN': 'मराठी (Marathi)',
+            'te-IN': 'తెలుగు (Telugu)'
+        };
         statusEl.innerHTML = `<span style="color: #6366f1;">Switched to ${langNames[lang] || lang}. Listening...</span>`;
     }
 
@@ -426,6 +431,10 @@ function setVoiceLanguage(lang) {
         speechRecognizer.stop();
         setTimeout(startVoiceRecording, 300);
     }
+}
+
+function setVoiceLanguageByCode(code) {
+    if (code) setVoiceLanguage(code);
 }
 
 function startVoiceRecording() {
@@ -855,6 +864,10 @@ function addChatMessage(text, sender) {
 }
 
 function generateEmpatheticResponse(input) {
+    if (typeof LanguageService !== 'undefined' && LanguageService.getLocalizedBotResponse) {
+        return LanguageService.getLocalizedBotResponse(input);
+    }
+
     const lower = input.toLowerCase();
 
     // Crisis Check
@@ -866,54 +879,33 @@ function generateEmpatheticResponse(input) {
         return `I hear how intense this feels right now. When anxiety strikes, your nervous system is in overdrive. Let's do a quick grounding technique together:<br><br>1. Plant your feet flat on the floor.<br>2. Look around and name <strong>3 things you can see</strong> and <strong>2 things you can touch</strong>.<br>3. Scroll to our <a href="#breathing" style="font-weight: 700; text-decoration: underline;">Mindful Breathing Studio</a> above to try 3 cycles of 4-7-8 breathing.<br><br>Would you like to complete our quick assessment so a counselor can follow up?`;
     }
 
-    if (lower.includes('nhaa') || lower.includes('helpline') || lower.includes('14566') || lower.includes('atrocity') || lower.includes('caste') || lower.includes('police')) {
-        return `<strong>National Helpline Against Atrocities (14566)</strong> is a 24/7 government initiative under the Ministry of Social Justice & Empowerment.<br><br>While NHAA provides direct legal, administrative, and grievance-tracking support, <strong>MindCare AI</strong> provides the psychological first aid and trauma counseling to support victims and families. All mental health services here are 100% free.`;
-    }
-
-    if (lower.includes('anonymous') || lower.includes('privacy') || lower.includes('secret') || lower.includes('confidential')) {
-        return `Your privacy is our highest priority. You can check the <strong>"Submit Anonymously"</strong> box in the assessment form. All assessments and notes are stored using end-to-end 256-bit encryption in strict compliance with the Indian Digital Personal Data Protection Act.`;
-    }
-
-    if (lower.includes('trauma') || lower.includes('flashback') || lower.includes('nightmare') || lower.includes('incident') || lower.includes('accident')) {
-        return `Experiencing trauma or sudden shock can cause intrusive memories and emotional numbness. These are natural protective responses of your brain. Healing takes time and a compassionate listening ear. We encourage you to take the <a href="#assessment" style="font-weight: 700; text-decoration: underline;">Assessment Form</a> so we can match you with an experienced trauma specialist.`;
-    }
-
-    if (lower.includes('counselor') || lower.includes('doctor') || lower.includes('therapist') || lower.includes('talk to someone')) {
-        return `Our certified psychological counselors are available round the clock through the NHAA network. Once you submit the assessment, a counselor will review your triage level and reach out within 2 to 24 hours. If it's urgent, you can call <a href="tel:14566" style="font-weight: 700;">14566</a> right now.`;
-    }
-
-    if (lower.includes('dbt') || lower.includes('hive') || lower.includes('skills') || lower.includes('circle') || lower.includes('course') || lower.includes('cohort') || lower.includes('group')) {
-        return `<strong>TheraHive DBT Skills & Peer Circles</strong> provide evidence-based recovery for trauma, panic, and emotional overwhelm:<br><br>• <strong>Wise Mind:</strong> Mindfulness to balance emotion and reason.<br>• <strong>TIPP Skills:</strong> Rapid physical de-escalation for panic surges.<br>• <strong>DEAR MAN:</strong> Assertiveness and healthy boundary communication.<br>• <strong>Peer Circles:</strong> Moderated, small-group survivor healing.<br><br><button class="btn btn-amber btn-sm" onclick="openDbtRegistrationModal('Comprehensive DBT Skills Course')" style="margin-top: 6px;"><i class="fas fa-users-rays"></i> Join a Free DBT Circle</button>`;
-    }
-
-    if (lower.includes('score') || lower.includes('bio') || lower.includes('resilience') || lower.includes('vagal') || lower.includes('somatic') || lower.includes('endocrine') || lower.includes('28%') || lower.includes('intelly') || lower.includes('check-up') || lower.includes('checkup')) {
-        return `<strong>Bio-Somatic Resilience Assessment Analysis:</strong><br><br>Your composite health score evaluates multi-system recovery from traumatic stress:<br><br>• <strong>Cardio-Vagal Tone (8.8/10):</strong> Heart Rate Variability indicates active parasympathetic regeneration.<br>• <strong>Respiratory Vagus (9.1/10):</strong> Diaphragmatic rhythm and oxygenation are optimal.<br>• <strong>Endocrine Cortisol Axis (8.3/10):</strong> Adrenal rhythm is steadily normalizing.<br>• <strong>Neuro-Cognitive Axis (7.6/10):</strong> Moderate cognitive strain from trauma memory processing.<br>• <strong>Distress Tolerance (8.5/10):</strong> Grounding and TIPP skill capacity are stabilized.<br><br>Would you like to <button class="btn btn-dark btn-sm" onclick="openCounselorBookingModal()" style="margin-top: 6px;"><i class="fas fa-calendar-check"></i> Plan a 30-Min Counselor Check-Up</button> or practice 3 cycles in the <a href="#breathing" style="font-weight: 700; color: #6366f1;">Breathing Studio</a>?`;
-    }
-
     // Default warm supportive response
     return `Thank you for sharing that with me. It takes courage to acknowledge how you're feeling. I am here to listen and help you navigate this moment.<br><br>Here are some things we can do right now:<br>1. <a href="#assessment" style="color: #6366f1; font-weight: 600;">Take the Stress & Trauma Assessment</a><br>2. <a href="#community-circles" style="color: #e59819; font-weight: 600;">Explore TheraHive DBT Circles</a><br>3. <a href="#breathing" style="color: #6366f1; font-weight: 600;">Try the Nature Breathing Exercise</a><br>4. <a href="tel:14566" style="color: #ef4444; font-weight: 600;">Call the 24/7 NHAA Helpline (14566)</a><br><br>How else can I assist you today?`;
 }
 
 /* ==========================================================================
-   7. Crisis Detection & Immediate Intervention System
+   7. Crisis Detection & Immediate Intervention System (Multilingual Scanner)
    ========================================================================== */
-const DISTRESS_KEYWORDS = [
-    'suicide', 'suicidal', 'kill myself', 'end my life', 'self-harm', 'self harm',
-    'cutting', 'want to die', 'dont want to live', "don't want to live", 'better off dead',
-    'no reason to live', 'end it all', 'take my life', 'hopeless', 'overdose'
-];
-
 function checkDistressKeywords(text, showModalImmediately = true) {
     if (!text) return false;
-    const lower = text.toLowerCase();
-    const isCrisis = DISTRESS_KEYWORDS.some(k => lower.includes(k));
+
+    let isCrisis = false;
+    if (typeof LanguageService !== 'undefined' && LanguageService.isDistressText) {
+        isCrisis = LanguageService.isDistressText(text);
+    } else {
+        const lower = text.toLowerCase();
+        const fallbackKeywords = ['suicide', 'kill myself', 'end my life', 'want to die', 'self-harm', 'आत्महत्या', 'मरणे', 'ఆత్మహత్య'];
+        isCrisis = fallbackKeywords.some(k => lower.includes(k));
+    }
 
     if (isCrisis && showModalImmediately) {
         triggerCrisisModal(
             'Emergency Psychological Support Available',
-            'We noticed words in your message that suggest you may be in deep distress. Please know that your life has immense value and free, confidential support is here for you 24/7.'
+            'We noticed words in your message that suggest you may be in deep distress. Please know that your life has immense value and free, confidential support is here for you 24/7 in your language.'
         );
     }
+    return isCrisis;
+}
     return isCrisis;
 }
 

@@ -44,29 +44,52 @@
                 </div>
                 <div class="logo-text-group">
                     <span class="logo-title">MindCare AI</span>
-                    <span class="logo-badge">NHAA • 14566 PORTAL</span>
+                    <span class="logo-badge" data-i18n="logo_subtitle">NHAA • 14566 PORTAL</span>
                 </div>
             </a>
 
             <!-- Desktop Nav Links -->
             <ul class="nav-links">
-                <li><a href="#home"><i class="fas fa-home"></i> <span>Home</span></a></li>
-                <li><a href="#nhaa-integration"><i class="fas fa-shield-alt"></i> <span class="nav-multiline"><span>NHAA</span><span>Link</span></span></a></li>
-                <li><a href="#features"><i class="fas fa-layer-group"></i> <span>Features</span></a></li>
-                <li><a href="#assessment"><i class="fas fa-clipboard-check"></i> <span>Assessment</span></a></li>
-                <li><a href="#breathing"><i class="fas fa-lungs"></i> <span>Breathe</span></a></li>
-                <li><a href="#chatbot"><i class="fas fa-robot"></i> <span class="nav-multiline"><span>AI</span><span>Companion</span></span></a></li>
-                <li><a href="#how-it-works"><i class="fas fa-share-nodes"></i> <span class="nav-multiline"><span>How It</span><span>Works</span></span></a></li>
-                <li><a href="#faq"><i class="fas fa-circle-question"></i> <span>FAQ</span></a></li>
+                <li><a href="#home"><i class="fas fa-home"></i> <span data-i18n="nav_home">Home</span></a></li>
+                <li><a href="#nhaa-integration"><i class="fas fa-shield-alt"></i> <span class="nav-multiline"><span data-i18n="nav_nhaa">NHAA Link</span></span></a></li>
+                <li><a href="#features"><i class="fas fa-layer-group"></i> <span data-i18n="nav_features">Features</span></a></li>
+                <li><a href="#assessment"><i class="fas fa-clipboard-check"></i> <span data-i18n="nav_assessment">Assessment</span></a></li>
+                <li><a href="#breathing"><i class="fas fa-lungs"></i> <span data-i18n="nav_breathe">Breathe</span></a></li>
+                <li><a href="#chatbot"><i class="fas fa-robot"></i> <span class="nav-multiline"><span data-i18n="nav_companion">AI Companion</span></span></a></li>
+                <li><a href="#how-it-works"><i class="fas fa-share-nodes"></i> <span class="nav-multiline"><span data-i18n="nav_how_it_works">How It Works</span></span></a></li>
+                <li><a href="#faq"><i class="fas fa-circle-question"></i> <span data-i18n="nav_faq">FAQ</span></a></li>
             </ul>
 
-            <!-- Nav Action Buttons -->
+            <!-- Nav Action Buttons & Language Selector -->
             <div class="nav-actions">
+                <!-- Regional Language Dropdown (English, Hindi, Marathi, Telugu) -->
+                <div class="lang-dropdown-wrapper" id="langDropdownWrapper">
+                    <button class="lang-dropdown-toggle-btn" id="langDropdownToggleBtn" aria-label="Select Regional Language" title="Select Regional Language">
+                        <span id="currentLangFlag">🇬🇧</span>
+                        <span id="currentLangLabel">English</span>
+                        <i class="fas fa-chevron-down" style="font-size: 0.65rem; margin-left: 2px;"></i>
+                    </button>
+                    <div class="lang-dropdown-menu" id="langDropdownMenu">
+                        <button class="lang-dropdown-option active" data-lang="en">
+                            <span>🇬🇧 English</span>
+                        </button>
+                        <button class="lang-dropdown-option" data-lang="hi">
+                            <span>🇮🇳 हिंदी (Hindi)</span>
+                        </button>
+                        <button class="lang-dropdown-option" data-lang="mr">
+                            <span>🇮🇳 मराठी (Marathi)</span>
+                        </button>
+                        <button class="lang-dropdown-option" data-lang="te">
+                            <span>🇮🇳 తెలుగు (Telugu)</span>
+                        </button>
+                    </div>
+                </div>
+
                 <button class="btn btn-urgent btn-sm" id="navEmergencySosBtn" onclick="document.getElementById('emergencySosModal').classList.add('active')">
-                    <i class="fas fa-phone-volume"></i> Emergency SOS
+                    <i class="fas fa-phone-volume"></i> <span data-i18n="nav_emergency_sos">Emergency SOS</span>
                 </button>
                 <button class="btn btn-secondary btn-sm open-auth-modal-btn">
-                    <i class="fas fa-user-circle"></i> Portal Login
+                    <i class="fas fa-user-circle"></i> <span data-i18n="nav_portal_login">Portal Login</span>
                 </button>
                 <button class="mobile-menu-toggle-btn" id="mobileMenuToggle" aria-label="Open Navigation Menu">
                     <i class="fas fa-bars"></i>
@@ -1562,13 +1585,16 @@
                 Speak freely in your preferred language. Your words will be transcribed securely and applied to your assessment form.
             </p>
 
-            <!-- Language Pills -->
+            <!-- Language Pills (English, Hindi, Marathi, Telugu) -->
             <div style="display: flex; gap: 10px; justify-content: center; margin-bottom: 20px; flex-wrap: wrap;">
                 <button class="btn btn-sm btn-secondary lang-pill-btn active" data-lang="en-US">
                     <i class="fas fa-globe"></i> English
                 </button>
                 <button class="btn btn-sm btn-secondary lang-pill-btn" data-lang="hi-IN">
                     <i class="fas fa-globe"></i> हिंदी (Hindi)
+                </button>
+                <button class="btn btn-sm btn-secondary lang-pill-btn" data-lang="mr-IN">
+                    <i class="fas fa-globe"></i> मराठी (Marathi)
                 </button>
                 <button class="btn btn-sm btn-secondary lang-pill-btn" data-lang="te-IN">
                     <i class="fas fa-globe"></i> తెలుగు (Telugu)
@@ -1955,7 +1981,8 @@
         </div>
     </div>
 
-    <!-- Application Script -->
+    <!-- Multilingual Regional Language Service & App Scripts -->
+    <script src="languages.js"></script>
     <script src="app.js"></script>
 </body>
 </html>
