@@ -1,0 +1,1961 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>MindCare AI - Real-Time Stress & Trauma Assessment | NHAA Portal</title>
+    
+    <!-- Meta Descriptions & SEO -->
+    <meta name="description" content="MindCare AI provides real-time trauma, stress assessment, and psychological first aid for NHAA victims in partnership with the National Helpline Against Atrocities (14566).">
+    <meta name="keywords" content="MindCare AI, NHAA 14566, Mental Health Assessment, Trauma Support, Psychological First Aid, Stress Screening, Atrocity Victim Support, SIH 2026">
+    <meta name="theme-color" content="#6366f1">
+
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+
+    <!-- Google Fonts: Poppins (Headings) & Inter (Body) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- jsPDF Library for Assessment Reports -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    
+    <!-- Main Style Sheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Accessible Skip Link -->
+    <a href="#assessment" class="skip-link">Skip to Assessment</a>
+
+    <!-- Main Navigation Bar -->
+    <nav class="main-nav" role="navigation" aria-label="Primary Navigation">
+        <div class="nav-container">
+            <a href="#home" class="brand-logo" aria-label="MindCare AI Homepage">
+                <div class="logo-icon-wrapper">
+                    <i class="fas fa-brain"></i>
+                </div>
+                <div class="logo-text-group">
+                    <span class="logo-title">MindCare AI</span>
+                    <span class="logo-badge">NHAA • 14566 PORTAL</span>
+                </div>
+            </a>
+
+            <!-- Desktop Nav Links -->
+            <ul class="nav-links">
+                <li><a href="#home"><i class="fas fa-home"></i> <span>Home</span></a></li>
+                <li><a href="#nhaa-integration"><i class="fas fa-shield-alt"></i> <span class="nav-multiline"><span>NHAA</span><span>Link</span></span></a></li>
+                <li><a href="#features"><i class="fas fa-layer-group"></i> <span>Features</span></a></li>
+                <li><a href="#assessment"><i class="fas fa-clipboard-check"></i> <span>Assessment</span></a></li>
+                <li><a href="#breathing"><i class="fas fa-lungs"></i> <span>Breathe</span></a></li>
+                <li><a href="#chatbot"><i class="fas fa-robot"></i> <span class="nav-multiline"><span>AI</span><span>Companion</span></span></a></li>
+                <li><a href="#how-it-works"><i class="fas fa-share-nodes"></i> <span class="nav-multiline"><span>How It</span><span>Works</span></span></a></li>
+                <li><a href="#faq"><i class="fas fa-circle-question"></i> <span>FAQ</span></a></li>
+            </ul>
+
+            <!-- Nav Action Buttons -->
+            <div class="nav-actions">
+                <button class="btn btn-urgent btn-sm" id="navEmergencySosBtn" onclick="document.getElementById('emergencySosModal').classList.add('active')">
+                    <i class="fas fa-phone-volume"></i> Emergency SOS
+                </button>
+                <button class="btn btn-secondary btn-sm open-auth-modal-btn">
+                    <i class="fas fa-user-circle"></i> Portal Login
+                </button>
+                <button class="mobile-menu-toggle-btn" id="mobileMenuToggle" aria-label="Open Navigation Menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Drawer Menu -->
+    <div class="mobile-sidebar-drawer" id="mobileSidebar">
+        <div class="mobile-drawer-header">
+            <div style="display: flex; align-items: center; gap: 10px;">
+                <i class="fas fa-brain" style="font-size: 1.5rem;"></i>
+                <h3 style="color: white; margin: 0; font-size: 1.25rem;">MindCare AI</h3>
+            </div>
+            <button id="drawerCloseBtn" style="background: none; border: none; color: white; font-size: 1.5rem; cursor: pointer;">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="mobile-drawer-links">
+            <a href="#home"><i class="fas fa-home" style="color: #6366f1;"></i> Home</a>
+            <a href="#nhaa-integration"><i class="fas fa-shield-alt" style="color: #6366f1;"></i> NHAA Integration</a>
+            <a href="#features"><i class="fas fa-layer-group" style="color: #6366f1;"></i> Features</a>
+            <a href="#community-circles"><i class="fas fa-users-rays" style="color: #e59819;"></i> DBT Circles (Get Better Together)</a>
+            <a href="#health-score"><i class="fas fa-chart-pie" style="color: #ec4899;"></i> Bio-Somatic Resilience Score (8.8)</a>
+            <a href="#assessment"><i class="fas fa-clipboard-check" style="color: #6366f1;"></i> Take Assessment</a>
+            <a href="#breathing"><i class="fas fa-lungs" style="color: #6366f1;"></i> Mindful Breathing</a>
+            <a href="#chatbot"><i class="fas fa-robot" style="color: #6366f1;"></i> AI Support Companion</a>
+            <a href="#how-it-works"><i class="fas fa-circle-nodes" style="color: #6366f1;"></i> How It Works</a>
+            <a href="#resources"><i class="fas fa-book-medical" style="color: #6366f1;"></i> Self-Care Guides</a>
+            <a href="#faq"><i class="fas fa-circle-question" style="color: #6366f1;"></i> FAQ</a>
+            <div style="margin-top: 15px; display: flex; flex-direction: column; gap: 10px;">
+                <button class="btn btn-urgent" onclick="document.getElementById('emergencySosModal').classList.add('active'); document.getElementById('mobileSidebar').classList.remove('active');">
+                    <i class="fas fa-phone-volume"></i> Emergency SOS (14566)
+                </button>
+                <button class="btn btn-secondary open-auth-modal-btn" onclick="document.getElementById('mobileSidebar').classList.remove('active');">
+                    <i class="fas fa-user-circle"></i> Portal Login / Register
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="modal-overlay" id="mobileDrawerOverlay" style="z-index: 10000;"></div>
+
+    <main id="main-content">
+        <!-- 3. Hero Section -->
+        <section class="hero-section" id="home" aria-labelledby="heroHeading">
+            <div class="container">
+                <div class="hero-grid">
+                    <div class="hero-text-col">
+                        <div class="hero-eyebrow">
+                            <span class="live-pulse"></span>
+                            <span>AI-Powered Psychological First Aid</span>
+                        </div>
+                        <h1 class="hero-title" id="heroHeading">
+                            Real-Time Stress & <span class="highlight">Trauma Assessment</span> for NHAA Victims
+                        </h1>
+                        <p class="hero-description">
+                            Immediate trauma screening, crisis stabilization, and confidential psychological support for survivors and complainants. Connected directly with the <strong>National Helpline Against Atrocities (14566)</strong>.
+                        </p>
+                        
+                        <div class="hero-cta-group">
+                            <a href="#assessment" class="btn btn-primary btn-large" id="heroStartAssessmentBtn">
+                                <i class="fas fa-notes-medical"></i> Start Assessment
+                            </a>
+                            <a href="#chatbot" class="btn btn-secondary btn-large" id="heroTalkToAiBtn">
+                                <i class="fas fa-comments"></i> Talk to AI
+                            </a>
+                        </div>
+
+                        <div class="hero-stats-row">
+                            <div class="stat-item">
+                                <div class="stat-value">50,000+</div>
+                                <div class="stat-label">Assessments Conducted</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">98.4%</div>
+                                <div class="stat-label">Clinical Correlation</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">24/7</div>
+                                <div class="stat-label">Free Immediate Care</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Hero Visual Card & Confidence Badges -->
+                    <div class="hero-visual-wrapper">
+                        <!-- Floating Badges -->
+                        <div class="floating-badge floating-badge-1">
+                            <div class="badge-icon-circle shield">
+                                <i class="fas fa-shield-halved"></i>
+                            </div>
+                            <div>
+                                <div class="badge-text-title">100% Confidential</div>
+                                <div class="badge-text-sub">DPDP Act Compliant</div>
+                            </div>
+                        </div>
+
+                        <div class="floating-badge floating-badge-2">
+                            <div class="badge-icon-circle clock">
+                                <i class="fas fa-bolt"></i>
+                            </div>
+                            <div>
+                                <div class="badge-text-title">Instant Triage</div>
+                                <div class="badge-text-sub">Real-Time Risk Scoring</div>
+                            </div>
+                        </div>
+
+                        <div class="hero-visual-card">
+                            <div class="card-header-status">
+                                <span class="portal-badge"><i class="fas fa-certificate"></i> Official NHAA Partner</span>
+                                <span class="live-indicator-badge"><i class="fas fa-circle" style="font-size: 0.55rem;"></i> AI Evaluator Ready</span>
+                            </div>
+                            
+                            <div class="interactive-preview-box">
+                                <div class="preview-waveform">
+                                    <div class="wave-bar"></div>
+                                    <div class="wave-bar"></div>
+                                    <div class="wave-bar"></div>
+                                    <div class="wave-bar"></div>
+                                    <div class="wave-bar"></div>
+                                    <div class="wave-bar"></div>
+                                </div>
+                                <p class="preview-quote">"I felt paralyzed after the incident... MindCare AI connected me with an empathetic counselor within 2 hours."</p>
+                                <div class="preview-triage-tag">
+                                    <span>AI Trauma Detection:</span>
+                                    <span class="tag-highlight"><i class="fas fa-check"></i> Stabilized</span>
+                                </div>
+                            </div>
+
+                            <div style="display: flex; gap: 12px; justify-content: center;">
+                                <button class="btn btn-calm btn-sm open-voice-modal-btn" style="width: 100%;">
+                                    <i class="fas fa-microphone"></i> Try Voice Assessment
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. NHAA Portal Integration Section -->
+        <section class="nhaa-integration-section" id="nhaa-integration" aria-labelledby="nhaaHeading">
+            <div class="container">
+                <div class="nhaa-grid">
+                    <div>
+                        <h2 class="nhaa-heading" id="nhaaHeading">
+                            <i class="fas fa-shield-cat"></i> Integrated with NHAA Portal (14566)
+                        </h2>
+                        <p class="nhaa-lead">
+                            MindCare AI bridges the gap between legal grievance redressal and mental health recovery. While the <strong>National Helpline Against Atrocities (14566)</strong> facilitates legal protection and official reporting under the Ministry of Social Justice & Empowerment, MindCare AI delivers immediate psychological first-aid and certified counselor dispatch.
+                        </p>
+                        <div class="nhaa-actions">
+                            <a href="https://socialjustice.gov.in" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+                                <i class="fas fa-arrow-up-right-from-square"></i> Visit Official NHAA Portal
+                            </a>
+                            <a href="tel:14566" class="btn btn-secondary">
+                                <i class="fas fa-phone"></i> Call 14566 Toll-Free
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="nhaa-card">
+                        <h3 class="nhaa-card-title"><i class="fas fa-hand-holding-heart" style="color: #6366f1;"></i> Comprehensive Survivor Care</h3>
+                        <ul class="nhaa-feature-list">
+                            <li>
+                                <i class="fas fa-check-circle"></i>
+                                <div><strong>Real-Time Trauma Screening:</strong> Validated psychological scales for acute stress, PTSD, and depression.</div>
+                            </li>
+                            <li>
+                                <i class="fas fa-check-circle"></i>
+                                <div><strong>Seamless Case Correlation:</strong> Reference IDs can be linked to NHAA complaints for holistic rehabilitation.</div>
+                            </li>
+                            <li>
+                                <i class="fas fa-check-circle"></i>
+                                <div><strong>Priority Crisis Intervention:</strong> High-risk survivor alerts trigger emergency counselor callback within 2 hours.</div>
+                            </li>
+                            <li>
+                                <i class="fas fa-check-circle"></i>
+                                <div><strong>Free Public Health Service:</strong> Complete confidentiality with zero commercial barriers.</div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. Features Section (Why Choose MindCare AI) -->
+        <section class="features-section" id="features" aria-labelledby="featuresHeading">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-eyebrow">Evidence-Based Trauma Care</span>
+                    <h2 id="featuresHeading">Why Choose MindCare AI?</h2>
+                    <p>Designed with trauma-informed principles, military-grade data protection, and clinical psychologist oversight to provide safe, empathetic care.</p>
+                </div>
+
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon-box"><i class="fas fa-robot"></i></div>
+                        <h3>AI-Powered Triage</h3>
+                        <p>Our intelligent sentiment models analyze speech, text, and clinical indicators to generate immediate, accurate trauma and stress indexes.</p>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon-box"><i class="fas fa-user-shield"></i></div>
+                        <h3>100% Confidential & Secure</h3>
+                        <p>All data is protected under 256-bit AES encryption with optional anonymous reporting. No personally identifiable details are shared without consent.</p>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon-box"><i class="fas fa-headset"></i></div>
+                        <h3>24/7 Crisis Support</h3>
+                        <p>Instant access to automated de-escalation tools, guided breathing, and direct hotlines whenever traumatic memories or panic strikes.</p>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon-box"><i class="fas fa-heart-pulse"></i></div>
+                        <h3>Trauma-Informed Care</h3>
+                        <p>Every screening prompt and AI interaction is carefully calibrated to avoid re-traumatization and foster emotional safety and dignity.</p>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon-box"><i class="fas fa-chart-line"></i></div>
+                        <h3>Clinical PDF Reports</h3>
+                        <p>Instantly generate verifiable, structured PDF assessment summaries to share with personal therapists, legal advocates, or healthcare providers.</p>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon-box"><i class="fas fa-user-doctor"></i></div>
+                        <h3>Licensed Counselor Dispatch</h3>
+                        <p>Seamless connection to accredited trauma counselors and psychological professionals across NHAA's nationwide support network.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. Stress & Trauma Assessment Flow -->
+        <section class="assessment-section" id="assessment" aria-labelledby="assessmentHeading">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-eyebrow">Confidential Psychological Screening</span>
+                    <h2 id="assessmentHeading">Stress & Trauma Assessment</h2>
+                    <p>Take our comprehensive 2-minute check-in. Receive an instant risk assessment, clinical care recommendations, and dedicated counselor support.</p>
+                </div>
+
+                <!-- Voice Assessment CTA Banner -->
+                <div class="voice-cta-banner">
+                    <button class="btn btn-calm btn-large open-voice-modal-btn" id="assessmentVoiceBtn">
+                        <i class="fas fa-microphone"></i> Voice Assessment - Speak Your Concerns
+                    </button>
+                    <p>Prefer speaking rather than typing? Speak freely in English, Hindi, or Telugu.</p>
+                </div>
+
+                <!-- Main Assessment Card -->
+                <div class="assessment-card">
+                    <form id="stressAssessmentForm" class="assessment-form-grid" novalidate>
+                        
+                        <!-- Anonymous Checkbox -->
+                        <div style="background: var(--bg-light); padding: 14px 18px; border-radius: var(--radius-md); border: 1px solid var(--border-soft);">
+                            <label class="anonymous-checkbox-label" for="anonymousCheck">
+                                <input type="checkbox" id="anonymousCheck">
+                                <span><strong>Submit Anonymously</strong> (Hide my real name & personal contact information)</span>
+                            </label>
+                        </div>
+
+                        <!-- Personal Details Row 1 -->
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="fullNameInput"><i class="fas fa-user"></i> Full Name *</label>
+                                <input type="text" id="fullNameInput" placeholder="Enter your full name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="emailInput"><i class="fas fa-envelope"></i> Email Address *</label>
+                                <input type="email" id="emailInput" placeholder="your.email@example.com" required>
+                            </div>
+                        </div>
+
+                        <!-- Personal Details Row 2 -->
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="phoneInput"><i class="fas fa-phone"></i> Phone Number *</label>
+                                <input type="tel" id="phoneInput" placeholder="+91 XXXXX XXXXX" required>
+                            </div>
+                            <div class="form-row" style="gap: 12px;">
+                                <div class="form-group">
+                                    <label for="ageInput"><i class="fas fa-calendar"></i> Age *</label>
+                                    <input type="number" id="ageInput" placeholder="Age" min="10" max="110" value="26" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="genderSelect"><i class="fas fa-venus-mars"></i> Gender *</label>
+                                    <select id="genderSelect" required>
+                                        <option value="Female">Female</option>
+                                        <option value="Male">Male</option>
+                                        <option value="Non-Binary">Non-Binary</option>
+                                        <option value="Prefer not to say">Prefer not to say</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Primary Concern Selector -->
+                        <div class="form-group">
+                            <label for="concernSelect"><i class="fas fa-triangle-exclamation"></i> Primary Incident or Concern Type *</label>
+                            <select id="concernSelect" required>
+                                <option value="Accident / Physical Trauma">Accident / Physical Trauma Survivor</option>
+                                <option value="Caste-Based Atrocity / Discrimination">Caste-Based Atrocity / Discrimination (NHAA Case)</option>
+                                <option value="Severe Anxiety & Panic Attacks">Severe Anxiety & Panic Attacks</option>
+                                <option value="Post-Traumatic Stress (PTSD) & Flashbacks">Post-Traumatic Stress (PTSD) & Flashbacks</option>
+                                <option value="Grief, Loss & Bereavement">Grief, Loss & Bereavement</option>
+                                <option value="Workplace / Academic Distress">Workplace / Academic Distress</option>
+                                <option value="Other Emotional Hardship">Other Emotional Hardship</option>
+                            </select>
+                        </div>
+
+                        <!-- 2-Week Feelings Narrative -->
+                        <div class="form-group">
+                            <label for="feelingsInput"><i class="fas fa-comment-dots"></i> How have you been feeling over the past 2 weeks? *</label>
+                            <textarea id="feelingsInput" rows="4" placeholder="Describe any emotional stress, flashbacks, physical tension, sleep disturbances, or recent incident triggers you are facing..." required></textarea>
+                        </div>
+
+                        <!-- Interactive Stress Level Slider -->
+                        <div class="stress-slider-wrapper">
+                            <div class="stress-header-row">
+                                <label for="stressLevelInput" style="margin: 0; font-weight: 700;">
+                                    <i class="fas fa-sliders" style="color: var(--trust-blue);"></i> Current Stress & Distress Level (1 - 10)
+                                </label>
+                                <span class="stress-badge-pill" id="stressLevelBadge">5/10 • Elevated Strain</span>
+                            </div>
+                            <input type="range" class="stress-slider-input" id="stressLevelInput" min="1" max="10" value="5" step="1">
+                            <div class="stress-slider-labels">
+                                <span>1 (Calm / Manageable)</span>
+                                <span>5 (Moderate Strain)</span>
+                                <span>10 (Crisis / Overwhelmed)</span>
+                            </div>
+                            <p id="stressLevelDesc" style="font-size: 0.8125rem; color: var(--text-muted); margin-top: 8px;">Noticeable difficulty relaxing, mild sleep or mood changes.</p>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <button type="submit" class="btn btn-primary btn-large" style="width: 100%; margin-top: 10px;" id="submitAssessmentBtn">
+                            <i class="fas fa-paper-plane"></i> Submit Assessment for AI Analysis
+                        </button>
+                    </form>
+
+                    <!-- Success State & PDF Trigger -->
+                    <div class="assessment-success-panel" id="assessmentSuccessPanel">
+                        <div class="success-icon-badge">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <h3>Assessment Completed Successfully</h3>
+                        <p style="color: var(--text-secondary); max-width: 580px; margin: 0 auto;">
+                            MindCare AI has triaged your responses. Your confidential assessment record has been filed securely with NHAA psycho-social support.
+                        </p>
+                        
+                        <div>
+                            <span class="reference-id-pill" id="assessmentRefId">NHAA-MC-789234</span>
+                        </div>
+
+                        <div class="sla-notice-box" id="counselorSlaText">
+                            <strong>Standard Case:</strong> A licensed psychological counselor will review your file and reach out within <strong>24 hours</strong>.
+                        </div>
+
+                        <!-- TheraHive DBT Circle Recommendation -->
+                        <div class="dbt-assessment-recommendation" style="margin: 20px 0; padding: 20px; background: #fffbeb; border: 1px solid #fde68a; border-radius: var(--radius-lg); text-align: left; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap;">
+                            <div style="display: flex; align-items: center; gap: 14px;">
+                                <div style="width: 48px; height: 48px; border-radius: 12px; background: #ffd885; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; flex-shrink: 0;">
+                                    🐝
+                                </div>
+                                <div>
+                                    <div style="font-family: 'Poppins', sans-serif; font-weight: 700; color: #b4710b; font-size: 0.95rem;">Recommended Next Step: TheraHive DBT Recovery Circle</div>
+                                    <p style="margin: 0; font-size: 0.85rem; color: #475569;">Join a confidential, small-group DBT skills cohort starting this week to practice emotion regulation and peer healing.</p>
+                                </div>
+                            </div>
+                            <button class="btn btn-amber btn-sm" onclick="openDbtRegistrationModal('TIPP Crisis Distress Tolerance')" style="white-space: nowrap;">
+                                <i class="fas fa-users-rays"></i> Join Matching Circle Free
+                            </button>
+                        </div>
+
+                        <div class="success-action-buttons">
+                            <button class="btn btn-calm btn-large" id="downloadPdfReportBtn">
+                                <i class="fas fa-file-pdf"></i> Download PDF Clinical Report
+                            </button>
+                            <a href="#breathing" class="btn btn-secondary btn-large">
+                                <i class="fas fa-lungs"></i> Try Calming Breathing Now
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 7. Mindful Breathing Exercise Studio -->
+        <section class="breathing-section" id="breathing" aria-labelledby="breathingHeading">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-eyebrow" style="background: rgba(255,255,255,0.2); color: white;">Instant Vagal Nerve De-escalation</span>
+                    <h2 id="breathingHeading">Mindful Breathing Space</h2>
+                    <p>Regulate your autonomic nervous system using the clinically proven 4-7-8 rhythm paired with calming ambient frequencies.</p>
+                </div>
+
+                <div class="breathing-studio-card">
+                    <!-- Audio Mute Toggle Button -->
+                    <button class="sound-toggle-btn" id="soundToggleBtn" aria-label="Toggle Breathing Sound">
+                        <i class="fas fa-volume-up" id="soundToggleIcon"></i>
+                    </button>
+
+                    <!-- Animated Breathing Circle -->
+                    <div class="breathing-visual-circle" id="breathingVisualCircle">
+                        <div class="breathing-bg-image" style="background-image: url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80');"></div>
+                        <div class="breathing-circle-overlay">
+                            <div class="breath-phase-text" id="breathPhaseDisplay">Ready</div>
+                            <div class="breath-timer-text" id="breathTimerDisplay">4-7-8</div>
+                            <div class="breath-sub-instruction" id="breathInstructionDisplay">Press Start to begin gentle calming rhythm</div>
+                        </div>
+                    </div>
+
+                    <!-- Step Dots -->
+                    <div class="phase-step-dots">
+                        <div class="phase-dot" data-phase="inhale">
+                            <i class="fas fa-arrow-up"></i> Inhale (4s)
+                        </div>
+                        <div class="phase-dot" data-phase="hold">
+                            <i class="fas fa-pause"></i> Hold (7s)
+                        </div>
+                        <div class="phase-dot" data-phase="exhale">
+                            <i class="fas fa-arrow-down"></i> Exhale (8s)
+                        </div>
+                    </div>
+
+                    <!-- Breathing Controls -->
+                    <div class="breathing-controls">
+                        <button class="btn btn-calm btn-large" id="breathingPlayBtn">
+                            <i class="fas fa-play"></i> Start Exercise
+                        </button>
+                        <button class="btn btn-outline-white btn-large" id="breathingResetBtn">
+                            <i class="fas fa-rotate-right"></i> Reset
+                        </button>
+                    </div>
+
+                    <!-- Session Stats -->
+                    <div class="breathing-stats-row">
+                        <div class="breathe-stat-box">
+                            <div class="breathe-stat-number" id="breathingCycleCountDisplay">0</div>
+                            <div class="breathe-stat-label">Cycles Completed</div>
+                        </div>
+                        <div class="breathe-stat-box">
+                            <div class="breathe-stat-number" id="breathingSessionTimeDisplay">0:00</div>
+                            <div class="breathe-stat-label">Session Elapsed</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 8. AI Support Chatbot Section -->
+        <section class="chatbot-section" id="chatbot" aria-labelledby="chatbotHeading">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-eyebrow">24/7 Empathetic AI Guidance</span>
+                    <h2 id="chatbotHeading">Talk to MindCare AI Companion</h2>
+                    <p>Need someone to talk to right now? Our trauma-informed AI companion is here with active listening, grounding tips, and support resources.</p>
+                </div>
+
+                <div class="chatbot-card-container">
+                    <div class="chatbot-header">
+                        <div class="bot-profile-info">
+                            <div class="bot-avatar-circle"><i class="fas fa-robot"></i></div>
+                            <div>
+                                <div class="bot-name">MindCare AI Companion</div>
+                                <div class="bot-status-tag"><span class="status-dot"></span> Online • Confidential Support</div>
+                            </div>
+                        </div>
+                        <span style="font-size: 0.75rem; background: rgba(255,255,255,0.2); padding: 4px 12px; border-radius: var(--radius-pill);">
+                            Trauma-Informed v2.4
+                        </span>
+                    </div>
+
+                    <!-- Chat Messages Window -->
+                    <div class="chatbot-messages-window" id="chatMessagesWindow">
+                        <div class="chat-message bot">
+                            <div class="message-bubble">
+                                Hello, I am your MindCare AI companion. Whether you're coping with a distressing event, feeling overwhelmed, or looking for counseling resources under NHAA (14566), I am here to support you without judgment. How are you feeling today?
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quick Starter Prompt Chips -->
+                    <div class="quick-prompts-bar">
+                        <button class="prompt-chip" data-prompt="I am feeling extremely anxious right now. Can you help?">
+                            <i class="fas fa-heart-crack"></i> Feeling Anxious
+                        </button>
+                        <button class="prompt-chip" data-prompt="How does MindCare connect with the NHAA 14566 portal?">
+                            <i class="fas fa-shield-alt"></i> NHAA Connection
+                        </button>
+                        <button class="prompt-chip" data-prompt="Give me a 2-minute grounding technique.">
+                            <i class="fas fa-wind"></i> 2-Min Grounding
+                        </button>
+                        <button class="prompt-chip" data-prompt="Is my assessment information kept completely private?">
+                            <i class="fas fa-lock"></i> Privacy Guarantee
+                        </button>
+                    </div>
+
+                    <!-- Input Bar -->
+                    <div class="chatbot-input-bar">
+                        <input type="text" id="chatInput" placeholder="Type what's on your mind..." aria-label="Type your message to AI companion">
+                        <button class="chat-send-btn" id="chatSendBtn" aria-label="Send Message">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Get Better Together: DBT Skills & Community Healing Circles (TheraHive Theme) -->
+        <section class="community-circles-section" id="community-circles" aria-labelledby="communityHeading">
+            <div class="container">
+                <div class="community-hero-grid">
+                    <div class="community-text-col">
+                        <div class="community-badge">
+                            <i class="fas fa-layer-group"></i> DBT Skills & Peer Support Circles
+                        </div>
+                        <h2 class="community-title" id="communityHeading">
+                            Get Better Together
+                        </h2>
+                        <p class="community-desc">
+                            Online Dialectical Behavioral Therapy (DBT) skills courses and compassionate peer circles proven to regulate intense emotions, recover from trauma, and rebuild psychological strength.
+                        </p>
+
+                        <div class="community-cta-group">
+                            <button class="btn btn-amber btn-large" onclick="openDbtRegistrationModal('Comprehensive DBT Skills Course')">
+                                <i class="fas fa-graduation-cap"></i> Join a DBT Course
+                            </button>
+                            <button class="btn btn-outline-amber btn-large" onclick="openDbtRegistrationModal('Free Intro & Orientation Session')">
+                                <i class="fas fa-video"></i> Join a FREE Intro Session
+                            </button>
+                        </div>
+
+                        <div class="community-highlights-list">
+                            <div class="community-highlight-item">
+                                <i class="fas fa-certificate"></i> Led by Certified Clinical Trauma Psychologists & DBT Specialists
+                            </div>
+                            <div class="community-highlight-item">
+                                <i class="fas fa-users-viewfinder"></i> Small, Safe & Confidential Groups (Limited to 6–8 Participants)
+                            </div>
+                            <div class="community-highlight-item">
+                                <i class="fas fa-hand-holding-heart"></i> 100% Free Public Health Initiative for NHAA Survivors & Families
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Honeycomb Hexagon Mosaic Widget (TheraHive Illustrated Theme) -->
+                    <div class="honeycomb-mosaic-wrapper">
+                        <!-- Flying Badminton Birdie & Arc Doodle -->
+                        <div class="honeycomb-doodle doodle-birdie">
+                            <svg viewBox="0 0 100 80" width="100" height="80" fill="none">
+                                <path d="M 15 65 Q 45 15 85 25" stroke="#475569" stroke-width="2" stroke-dasharray="4 4"/>
+                                <!-- Shuttlecock -->
+                                <circle cx="85" cy="25" r="4" fill="#f8fafc" stroke="#1e293b" stroke-width="2"/>
+                                <path d="M 85 25 L 96 15 M 85 25 L 98 22 M 85 25 L 94 32" stroke="#1e293b" stroke-width="2"/>
+                                <ellipse cx="94" cy="22" rx="4" ry="7" stroke="#1e293b" stroke-width="1.5" fill="#f1f5f9"/>
+                            </svg>
+                        </div>
+
+                        <!-- Top-Left Cloud Doodle -->
+                        <div class="honeycomb-doodle doodle-cloud">
+                            <svg viewBox="0 0 50 30" width="40" height="24" fill="none" stroke="#64748b" stroke-width="2">
+                                <path d="M 10 20 C 5 15 8 5 18 8 C 22 2 32 2 36 8 C 44 6 46 16 40 22 C 32 25 15 25 10 20 Z"/>
+                            </svg>
+                        </div>
+
+                        <div class="honeycomb-cluster">
+                            <!-- 1. Top Center: Wise Mind Elder with Beret (Mustard Yellow) -->
+                            <div class="hex-node hex-node-1" onclick="openDbtRegistrationModal('Mindfulness & Wise Mind Module')" title="Wise Mind & Mindfulness">
+                                <div class="hex-inner">
+                                    <div class="hex-art-box">
+                                        <svg viewBox="0 0 100 100" class="hex-char-svg" fill="none" stroke="#1e293b" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                            <!-- Beret Hat -->
+                                            <path d="M 28 34 C 28 18 72 18 72 34 C 76 36 78 40 73 42 C 67 44 33 44 27 42 C 22 40 24 36 28 34 Z" fill="#e59819" fill-opacity="0.35"/>
+                                            <path d="M 49 18 C 49 14 51 14 51 18"/>
+                                            <!-- Face Outline -->
+                                            <path d="M 36 40 C 36 56 64 56 64 40" fill="#fffdfa"/>
+                                            <!-- Spectacles -->
+                                            <circle cx="43" cy="42" r="4"/>
+                                            <circle cx="57" cy="42" r="4"/>
+                                            <line x1="47" y1="42" x2="53" y2="42"/>
+                                            <!-- Eyes & Nose -->
+                                            <circle cx="43" cy="42" r="1.5" fill="#1e293b"/>
+                                            <circle cx="57" cy="42" r="1.5" fill="#1e293b"/>
+                                            <path d="M 50 44 L 50 48 L 52 48"/>
+                                            <!-- Moustache, Smile & Beard -->
+                                            <path d="M 40 52 Q 50 58 60 52"/>
+                                            <path d="M 44 54 Q 50 68 56 54"/>
+                                            <path d="M 47 55 Q 50 59 53 55"/>
+                                            <!-- Shoulders -->
+                                            <path d="M 28 78 Q 50 66 72 78"/>
+                                        </svg>
+                                    </div>
+                                    <div class="hex-title-text">Wise Mind</div>
+                                    <div class="hex-sub-text">Mindfulness</div>
+                                </div>
+                            </div>
+
+                            <!-- 2. Top Right: Badminton Player reaching up (Peach Orange) -->
+                            <div class="hex-node hex-node-2" onclick="openDbtRegistrationModal('Distress Tolerance (TIPP) Circle')" title="TIPP Distress Tolerance">
+                                <div class="hex-inner">
+                                    <div class="hex-art-box">
+                                        <svg viewBox="0 0 100 100" class="hex-char-svg" fill="none" stroke="#1e293b" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                            <!-- Head & Hair -->
+                                            <circle cx="46" cy="38" r="13" fill="#fffdfa"/>
+                                            <path d="M 36 34 Q 44 24 56 30 Q 60 38 58 44" fill="#fb923c" fill-opacity="0.3"/>
+                                            <!-- Face -->
+                                            <circle cx="43" cy="38" r="1.5" fill="#1e293b"/>
+                                            <circle cx="51" cy="38" r="1.5" fill="#1e293b"/>
+                                            <path d="M 45 44 Q 48 48 51 44"/>
+                                            <!-- Body & Arms pointing up -->
+                                            <path d="M 34 78 Q 44 58 54 78"/>
+                                            <path d="M 50 56 Q 66 48 76 34"/>
+                                            <circle cx="77" cy="32" r="3" fill="#fb923c"/>
+                                            <path d="M 38 58 Q 28 64 24 72"/>
+                                        </svg>
+                                    </div>
+                                    <div class="hex-title-text">TIPP Skills</div>
+                                    <div class="hex-sub-text">Crisis Calm</div>
+                                </div>
+                            </div>
+
+                            <!-- 3. Bottom Right: Curly Hair with Speech Spiral (Soft Pink) -->
+                            <div class="hex-node hex-node-3" onclick="openDbtRegistrationModal('Emotion Regulation Workshop')" title="Emotion Regulation">
+                                <div class="hex-inner">
+                                    <div class="hex-art-box">
+                                        <svg viewBox="0 0 100 100" class="hex-char-svg" fill="none" stroke="#1e293b" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                            <!-- Curly Hair cloud -->
+                                            <path d="M 30 40 Q 25 30 35 24 Q 45 18 55 22 Q 68 18 72 28 Q 78 36 74 46 Q 78 56 68 62 Q 58 64 50 62 Q 40 65 32 58 Q 24 50 30 40 Z" fill="#f472b6" fill-opacity="0.25"/>
+                                            <!-- Face -->
+                                            <circle cx="50" cy="44" r="14" fill="#fffdfa"/>
+                                            <circle cx="44" cy="42" r="1.5" fill="#1e293b"/>
+                                            <circle cx="56" cy="42" r="1.5" fill="#1e293b"/>
+                                            <path d="M 46 48 Q 50 53 54 48"/>
+                                            <!-- Shoulders -->
+                                            <path d="M 30 78 Q 50 64 70 78"/>
+                                            <!-- Speech Bubble Spiral -->
+                                            <circle cx="76" cy="28" r="8" stroke-dasharray="1.5 2"/>
+                                            <path d="M 76 28 Q 79 25 78 23 Q 74 23 74 28 Q 74 31 79 31" stroke-width="1.8"/>
+                                        </svg>
+                                    </div>
+                                    <div class="hex-title-text">Emotional</div>
+                                    <div class="hex-sub-text">Regulation</div>
+                                </div>
+                            </div>
+
+                            <!-- 4. Bottom Center: Two Friends Toasting Tea Cups (Slate Blue) -->
+                            <div class="hex-node hex-node-4" onclick="openDbtRegistrationModal('Survivor Peer Connection Circle')" title="Peer Support Circles">
+                                <div class="hex-inner">
+                                    <div class="hex-art-box">
+                                        <svg viewBox="0 0 100 100" class="hex-char-svg" fill="none" stroke="#1e293b" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                            <!-- Person Left -->
+                                            <circle cx="32" cy="38" r="10" fill="#fffdfa"/>
+                                            <path d="M 24 35 Q 32 26 40 32" fill="#64748b" fill-opacity="0.3"/>
+                                            <path d="M 20 74 Q 30 56 40 74"/>
+                                            <!-- Person Right with Glasses -->
+                                            <circle cx="68" cy="38" r="10" fill="#fffdfa"/>
+                                            <circle cx="65" cy="36" r="3"/>
+                                            <path d="M 68 45 Q 70 52 74 45"/>
+                                            <path d="M 60 74 Q 70 56 80 74"/>
+                                            <!-- Hands holding cups toasting -->
+                                            <path d="M 36 58 L 46 54"/>
+                                            <path d="M 64 58 L 54 54"/>
+                                            <rect x="44" y="48" width="5" height="8" rx="1" fill="#667eea"/>
+                                            <rect x="51" y="48" width="5" height="8" rx="1" fill="#e59819"/>
+                                            <!-- Clink sparkle -->
+                                            <path d="M 50 42 L 50 45"/>
+                                            <path d="M 45 44 L 47 46"/>
+                                            <path d="M 55 44 L 53 46"/>
+                                        </svg>
+                                    </div>
+                                    <div class="hex-title-text">Peer Circle</div>
+                                    <div class="hex-sub-text">Safe Sharing</div>
+                                </div>
+                            </div>
+
+                            <!-- 5. Bottom Left: Badminton Player holding Racquet (Sage Green) -->
+                            <div class="hex-node hex-node-5" onclick="openDbtRegistrationModal('Somatic Regulation Circle')" title="Somatic & Nervous System Reset">
+                                <div class="hex-inner">
+                                    <div class="hex-art-box">
+                                        <svg viewBox="0 0 100 100" class="hex-char-svg" fill="none" stroke="#1e293b" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                            <!-- Head & Spiky Hair -->
+                                            <circle cx="52" cy="40" r="12" fill="#fffdfa"/>
+                                            <path d="M 42 34 L 46 26 L 52 32 L 56 24 L 60 32 L 64 28 L 64 38" fill="#10b981" fill-opacity="0.3"/>
+                                            <circle cx="48" cy="38" r="1.5" fill="#1e293b"/>
+                                            <circle cx="56" cy="38" r="1.5" fill="#1e293b"/>
+                                            <path d="M 49 45 Q 53 50 57 45"/>
+                                            <!-- Body & Arm holding racquet -->
+                                            <path d="M 38 78 Q 50 60 66 78"/>
+                                            <path d="M 42 58 L 26 44"/>
+                                            <!-- Racquet -->
+                                            <line x1="26" y1="44" x2="20" y2="30"/>
+                                            <ellipse cx="18" cy="24" rx="7" ry="9" stroke-width="2" fill="#c0ded9" fill-opacity="0.5"/>
+                                            <line x1="14" y1="24" x2="22" y2="24" stroke-width="1" stroke-dasharray="1 1"/>
+                                            <line x1="18" y1="17" x2="18" y2="31" stroke-width="1" stroke-dasharray="1 1"/>
+                                        </svg>
+                                    </div>
+                                    <div class="hex-title-text">Somatic Reset</div>
+                                    <div class="hex-sub-text">Active Energy</div>
+                                </div>
+                            </div>
+
+                            <!-- 6. Center / Left: Woman with Workbook (Warm Cream / Peach) -->
+                            <div class="hex-node hex-node-6" onclick="openDbtRegistrationModal('DEAR MAN Interpersonal Skills Circle')" title="Interpersonal Effectiveness & Boundaries">
+                                <div class="hex-inner">
+                                    <div class="hex-art-box">
+                                        <svg viewBox="0 0 100 100" class="hex-char-svg" fill="none" stroke="#1e293b" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                            <!-- Long Flowing Hair -->
+                                            <path d="M 32 40 Q 34 22 50 22 Q 66 22 68 40 L 70 66 Q 66 68 62 60 L 62 44 Q 50 34 38 44 L 38 60 Q 34 68 30 66 Z" fill="#e59819" fill-opacity="0.25"/>
+                                            <!-- Face -->
+                                            <circle cx="50" cy="38" r="12" fill="#fffdfa"/>
+                                            <circle cx="45" cy="36" r="1.5" fill="#1e293b"/>
+                                            <circle cx="55" cy="36" r="1.5" fill="#1e293b"/>
+                                            <path d="M 47 42 Q 50 46 53 42"/>
+                                            <!-- Shoulders & Workbook -->
+                                            <path d="M 34 78 Q 50 60 66 78"/>
+                                            <!-- Workbook / Clipboard in hands -->
+                                            <rect x="42" y="54" width="16" height="22" rx="2" fill="#ffffff" stroke-width="2"/>
+                                            <line x1="46" y1="60" x2="54" y2="60" stroke-width="1.5"/>
+                                            <line x1="46" y1="65" x2="54" y2="65" stroke-width="1.5"/>
+                                        </svg>
+                                    </div>
+                                    <div class="hex-title-text">DEAR MAN</div>
+                                    <div class="hex-sub-text">Boundaries</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Upcoming DBT Cohorts Grid -->
+                <div class="dbt-courses-header">
+                    <h3>Upcoming Live Circles & Skills Cohorts</h3>
+                    <p style="color: var(--text-secondary); max-width: 620px; margin: 0 auto;">Join interactive 60-minute weekly cohorts led by licensed trauma therapists over encrypted video.</p>
+                </div>
+
+                <div class="dbt-courses-grid">
+                    <div class="dbt-course-card">
+                        <div>
+                            <span class="course-schedule-tag"><i class="fas fa-calendar-check"></i> Starts Thu • 6:30 PM IST</span>
+                            <h4>TIPP Crisis Distress Tolerance</h4>
+                            <p>Learn physiological temperature shifts, paced breathing, and paired muscle relaxation to instantly halt acute panic surges.</p>
+                        </div>
+                        <div>
+                            <div class="course-facilitator-row">
+                                <div class="facilitator-avatar">DR</div>
+                                <div>
+                                    <div class="facilitator-name-label">Dr. Deepa Raghavan</div>
+                                    <div class="facilitator-role-label">Lead Trauma Psychologist</div>
+                                </div>
+                            </div>
+                            <button class="btn btn-amber btn-sm" style="width: 100%;" onclick="openDbtRegistrationModal('TIPP Crisis Distress Tolerance')">
+                                <i class="fas fa-user-plus"></i> Enroll for Free
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="dbt-course-card">
+                        <div>
+                            <span class="course-schedule-tag"><i class="fas fa-calendar-check"></i> Starts Sat • 11:00 AM IST</span>
+                            <h4>Radical Acceptance & Healing</h4>
+                            <p>Break free from agonizing emotional suffering and self-blame by embracing validated mindfulness and emotional validation tools.</p>
+                        </div>
+                        <div>
+                            <div class="course-facilitator-row">
+                                <div class="facilitator-avatar" style="background: #e0e7ff; color: #4338ca;">SK</div>
+                                <div>
+                                    <div class="facilitator-name-label">Suresh Kulkarni</div>
+                                    <div class="facilitator-role-label">Senior DBT Facilitator</div>
+                                </div>
+                            </div>
+                            <button class="btn btn-amber btn-sm" style="width: 100%;" onclick="openDbtRegistrationModal('Radical Acceptance & Healing')">
+                                <i class="fas fa-user-plus"></i> Enroll for Free
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="dbt-course-card">
+                        <div>
+                            <span class="course-schedule-tag"><i class="fas fa-calendar-check"></i> Starts Sun • 4:00 PM IST</span>
+                            <h4>DEAR MAN: Boundary Defense</h4>
+                            <p>Master assertiveness, maintain self-respect in difficult relationships, and communicate your needs with calm authority.</p>
+                        </div>
+                        <div>
+                            <div class="course-facilitator-row">
+                                <div class="facilitator-avatar" style="background: #fce7f3; color: #be185d;">AN</div>
+                                <div>
+                                    <div class="facilitator-name-label">Ananya Nair</div>
+                                    <div class="facilitator-role-label">Clinical Social Worker</div>
+                                </div>
+                            </div>
+                            <button class="btn btn-amber btn-sm" style="width: 100%;" onclick="openDbtRegistrationModal('DEAR MAN: Boundary Defense')">
+                                <i class="fas fa-user-plus"></i> Enroll for Free
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="dbt-course-card">
+                        <div>
+                            <span class="course-schedule-tag"><i class="fas fa-calendar-check"></i> Starts Tue • 7:00 PM IST</span>
+                            <h4>Survivor Peer Connection Circle</h4>
+                            <p>A moderated safe space to connect with other survivors, share healing milestones, and practice group mindfulness over warm tea.</p>
+                        </div>
+                        <div>
+                            <div class="course-facilitator-row">
+                                <div class="facilitator-avatar" style="background: #ecfdf5; color: #047857;">VM</div>
+                                <div>
+                                    <div class="facilitator-name-label">Vikram Mehra</div>
+                                    <div class="facilitator-role-label">Peer Recovery Lead</div>
+                                </div>
+                            </div>
+                            <button class="btn btn-amber btn-sm" style="width: 100%;" onclick="openDbtRegistrationModal('Survivor Peer Connection Circle')">
+                                <i class="fas fa-user-plus"></i> Join Circle Free
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Bio-Somatic Trauma Recovery & Health Score (8.8 Ring Engine) -->
+        <section class="health-score-section" id="health-score" aria-labelledby="healthScoreHeading">
+            <div class="container">
+                <div class="section-header" style="text-align: center; margin-bottom: 40px;">
+                    <div class="score-section-eyebrow">
+                        <i class="fas fa-heart-pulse"></i> Biometric & Psychological Resilience Index
+                    </div>
+                    <h2 id="healthScoreHeading" style="font-size: 2.2rem; color: #1e293b; margin-bottom: 10px;">
+                        Bio-Somatic Trauma Recovery Score
+                    </h2>
+                    <p style="color: var(--text-secondary); max-width: 680px; margin: 0 auto 18px;">
+                        Real-time multi-system tracking measuring autonomic nervous recovery, neuro-endocrine strain, and psychological coping resilience across 6 vital body axes.
+                    </p>
+                    <button class="btn btn-secondary btn-sm" onclick="openMobileSimulator()">
+                        <i class="fas fa-mobile-screen-button" style="color: #ec4899;"></i> Open Live Mobile Companion Mockup
+                    </button>
+                </div>
+
+                <div class="health-score-dashboard-grid">
+                    <!-- Left Column: Multi-Arc Donut & Action Hub -->
+                    <div class="health-ring-col">
+                        <div class="health-ring-card">
+                            <!-- Circular Donut Arc Visualizer -->
+                            <div class="score-ring-container">
+                                <!-- SVG Multi-Segment Donut Ring -->
+                                <svg class="score-donut-svg" viewBox="0 0 340 340" width="300" height="300">
+                                    <!-- Background subtle track -->
+                                    <circle cx="170" cy="170" r="120" fill="none" stroke="#f1f5f9" stroke-width="26" />
+
+                                    <!-- Segment 1: Yellow - Endocrine / DNA (Top-Left) -->
+                                    <circle class="donut-segment segment-endocrine" id="arcEndocrine" cx="170" cy="170" r="120" fill="none"
+                                        stroke="#facc15" stroke-width="26" stroke-linecap="round"
+                                        stroke-dasharray="90 664" stroke-dashoffset="170"
+                                        onclick="selectHealthSystem('endocrine')" title="Neuro-Endocrine System" />
+
+                                    <!-- Segment 2: Olive/Green - Respiratory / Lungs (Top-Right) -->
+                                    <circle class="donut-segment segment-respiratory" id="arcRespiratory" cx="170" cy="170" r="120" fill="none"
+                                        stroke="#a3e635" stroke-width="26" stroke-linecap="round"
+                                        stroke-dasharray="105 649" stroke-dashoffset="65"
+                                        onclick="selectHealthSystem('respiratory')" title="Respiratory Somatic Tone" />
+
+                                    <!-- Segment 3: Olive/Sage - Gastro-Emotional / Gut (Middle-Right) -->
+                                    <circle class="donut-segment segment-gastro" id="arcGastro" cx="170" cy="170" r="120" fill="none"
+                                        stroke="#84cc16" stroke-width="26" stroke-linecap="round"
+                                        stroke-dasharray="95 659" stroke-dashoffset="-50"
+                                        onclick="selectHealthSystem('gastro')" title="Gastro-Emotional Axis" />
+
+                                    <!-- Segment 4: Pink - Cardio-Vagal / Heart (Bottom-Right) -->
+                                    <circle class="donut-segment segment-cardio" id="arcCardio" cx="170" cy="170" r="120" fill="none"
+                                        stroke="#f472b6" stroke-width="26" stroke-linecap="round"
+                                        stroke-dasharray="115 639" stroke-dashoffset="-155"
+                                        onclick="selectHealthSystem('cardio')" title="Cardio-Vagal Autonomic Stability" />
+
+                                    <!-- Segment 5: Blue - Neuro-Cognitive / Brain (Bottom-Left) -->
+                                    <circle class="donut-segment segment-cognitive" id="arcCognitive" cx="170" cy="170" r="120" fill="none"
+                                        stroke="#93c5fd" stroke-width="26" stroke-linecap="round"
+                                        stroke-dasharray="100 654" stroke-dashoffset="-280"
+                                        onclick="selectHealthSystem('cognitive')" title="Neuro-Cognitive Memory & Focus" />
+
+                                    <!-- Segment 6: Amber/Shield - Distress Tolerance (Top-Center) -->
+                                    <circle class="donut-segment segment-distress" id="arcDistress" cx="170" cy="170" r="120" fill="none"
+                                        stroke="#fbbf24" stroke-width="26" stroke-linecap="round"
+                                        stroke-dasharray="80 674" stroke-dashoffset="-390"
+                                        onclick="selectHealthSystem('distress')" title="Distress Tolerance & DBT" />
+                                </svg>
+
+                                <!-- Floating Perimeter System Badges -->
+                                <div class="floating-ring-badge badge-top-left" onclick="selectHealthSystem('distress')" title="Distress Tolerance / Immunity">
+                                    <i class="fas fa-shield-halved" style="color: #b45309;"></i>
+                                </div>
+                                <div class="floating-ring-badge badge-top-right" onclick="selectHealthSystem('respiratory')" title="Respiratory Vagal Nerve">
+                                    <i class="fas fa-lungs" style="color: #4d7c0f;"></i>
+                                </div>
+                                <div class="floating-ring-badge badge-mid-right" onclick="selectHealthSystem('gastro')" title="Gastro-Emotional Gut Axis">
+                                    <i class="fas fa-wheat-awn" style="color: #4d7c0f;"></i>
+                                </div>
+                                <div class="floating-ring-badge badge-bot-right" onclick="selectHealthSystem('cardio')" title="Cardio-Vagal Autonomic System">
+                                    <i class="fas fa-heart-pulse" style="color: #be185d;"></i>
+                                </div>
+                                <div class="floating-ring-badge badge-bot-left" onclick="selectHealthSystem('cognitive')" title="Neuro-Cognitive Memory">
+                                    <i class="fas fa-brain" style="color: #1d4ed8;"></i>
+                                </div>
+                                <div class="floating-ring-badge badge-mid-left" onclick="selectHealthSystem('endocrine')" title="Neuro-Endocrine Cortisol Balance">
+                                    <i class="fas fa-dna" style="color: #a16207;"></i>
+                                </div>
+
+                                <!-- Center Score & Label -->
+                                <div class="score-ring-center">
+                                    <div class="score-number-big" id="overallScoreDisplay">8.8</div>
+                                    <div class="score-label-row">
+                                        <span>your resilience score</span>
+                                        <i class="fas fa-circle-info" title="Composite biometric & clinical assessment score (Scale 1-10)"></i>
+                                    </div>
+                                    <div class="score-trend-badge up" id="scoreTrendDisplay">
+                                        <i class="fas fa-arrow-trend-up"></i> +14% This Week
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Action Hub Quick Bar -->
+                            <div class="score-action-hub-bar">
+                                <button class="btn-score-dark" onclick="openCounselorBookingModal()">
+                                    <i class="fas fa-calendar-check"></i> Plan check-up
+                                </button>
+                                <button class="score-icon-btn" onclick="scrollToAssessment()" title="Rapid Clinical Assessment">
+                                    <i class="fas fa-stethoscope"></i>
+                                </button>
+                                <button class="score-icon-btn" onclick="downloadClinicalDossier()" title="Download PDF Clinical Dossier">
+                                    <i class="fas fa-file-medical"></i>
+                                </button>
+                                <button class="score-icon-btn" onclick="openShareCareModal()" title="Share Case with NHAA Counselor">
+                                    <i class="fas fa-paper-plane"></i>
+                                </button>
+                            </div>
+
+                            <!-- Proactive Smart Assistant Card (Intelly Theme) -->
+                            <div class="intelly-assistant-card" id="intellyAssistantCard">
+                                <div class="assistant-content">
+                                    <div class="assistant-header-tag">
+                                        <i class="fas fa-wand-magic-sparkles"></i> MindCare Assistant
+                                    </div>
+                                    <p class="assistant-msg-text" id="assistantMessageDisplay">
+                                        Taigo, your cardio-vagal stability increased by <strong>+22%</strong> following today's 4-7-8 breathing session.
+                                    </p>
+                                    <button class="btn-discuss-dark" onclick="discussScoreWithAI('Explain my bio-somatic health score and how breathing improved my vagal tone')">
+                                        Let's discuss
+                                    </button>
+                                </div>
+                                <div class="assistant-heart-art">
+                                    <svg viewBox="0 0 100 100" width="80" height="80" fill="#f472b6" fill-opacity="0.35">
+                                        <path d="M 50 85 C 20 60 5 40 15 22 C 25 5 45 12 50 25 C 55 12 75 5 85 22 C 95 40 80 60 50 85 Z"/>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Column: Bio-Somatic Health Systems Breakdown -->
+                    <div class="health-systems-col">
+                        <div class="health-systems-card">
+                            <div class="systems-card-header">
+                                <h3 style="margin: 0; font-size: 1.35rem; color: #1e293b;">Bio-Somatic Systems</h3>
+                                
+                                <!-- Filter Dropdown / Chips -->
+                                <div class="systems-filter-group">
+                                    <button class="sys-filter-chip active" data-filter="all" onclick="filterHealthSystems('all', this)">All</button>
+                                    <button class="sys-filter-chip" data-filter="high-strain" onclick="filterHealthSystems('high-strain', this)">High Strain</button>
+                                    <button class="sys-filter-chip" data-filter="stabilized" onclick="filterHealthSystems('stabilized', this)">Stabilized</button>
+                                    <button class="sys-filter-chip" data-filter="improving" onclick="filterHealthSystems('improving', this)">Improving</button>
+                                </div>
+                            </div>
+
+                            <!-- Health Systems Items List -->
+                            <div class="health-systems-list" id="healthSystemsList">
+                                <!-- 1. Neuro-Endocrine System -->
+                                <div class="system-item-row" data-category="stabilized" id="sysRowEndocrine" onclick="selectHealthSystem('endocrine')">
+                                    <div class="system-icon-circle" style="background: #fef08a; color: #854d0e;">
+                                        <i class="fas fa-dna"></i>
+                                    </div>
+                                    <div class="system-info-col">
+                                        <div class="system-name-row">
+                                            <span class="system-title">Endocrine & Cortisol Axis</span>
+                                            <span class="system-score-val">8.3 <small>of 10</small></span>
+                                        </div>
+                                        <div class="system-progress-track">
+                                            <div class="system-progress-fill" style="width: 83%; background: #facc15;"></div>
+                                        </div>
+                                        <div class="system-desc-sub">Adrenal rhythm & sleep recuperation balance</div>
+                                    </div>
+                                    <span class="system-status-pill stabilized"><i class="fas fa-check"></i> Stabilized</span>
+                                </div>
+
+                                <!-- 2. Cardio-Vagal System -->
+                                <div class="system-item-row" data-category="improving" id="sysRowCardio" onclick="selectHealthSystem('cardio')">
+                                    <div class="system-icon-circle" style="background: #fce7f3; color: #be185d;">
+                                        <i class="fas fa-heart-pulse"></i>
+                                    </div>
+                                    <div class="system-info-col">
+                                        <div class="system-name-row">
+                                            <span class="system-title">Cardio-Vagal & Autonomic Stability</span>
+                                            <span class="system-score-val">8.8 <small>of 10</small></span>
+                                        </div>
+                                        <div class="system-progress-track">
+                                            <div class="system-progress-fill" style="width: 88%; background: #f472b6;"></div>
+                                        </div>
+                                        <div class="system-desc-sub">Heart rate variability (HRV) & panic recovery</div>
+                                    </div>
+                                    <span class="system-status-pill improving"><i class="fas fa-arrow-trend-up"></i> +22%</span>
+                                </div>
+
+                                <!-- 3. Respiratory Vagus Somatics -->
+                                <div class="system-item-row" data-category="improving" id="sysRowRespiratory" onclick="selectHealthSystem('respiratory')">
+                                    <div class="system-icon-circle" style="background: #ecfccb; color: #3f6212;">
+                                        <i class="fas fa-lungs"></i>
+                                    </div>
+                                    <div class="system-info-col">
+                                        <div class="system-name-row">
+                                            <span class="system-title">Respiratory Somatic Vagal Tone</span>
+                                            <span class="system-score-val">9.1 <small>of 10</small></span>
+                                        </div>
+                                        <div class="system-progress-track">
+                                            <div class="system-progress-fill" style="width: 91%; background: #a3e635;"></div>
+                                        </div>
+                                        <div class="system-desc-sub">Diaphragmatic depth & paced oxygen regulation</div>
+                                    </div>
+                                    <span class="system-status-pill optimal"><i class="fas fa-star"></i> Optimal</span>
+                                </div>
+
+                                <!-- 4. Neuro-Cognitive Memory -->
+                                <div class="system-item-row" data-category="high-strain" id="sysRowCognitive" onclick="selectHealthSystem('cognitive')">
+                                    <div class="system-icon-circle" style="background: #e0f2fe; color: #0369a1;">
+                                        <i class="fas fa-brain"></i>
+                                    </div>
+                                    <div class="system-info-col">
+                                        <div class="system-name-row">
+                                            <span class="system-title">Neuro-Cognitive Memory & Focus</span>
+                                            <span class="system-score-val">7.6 <small>of 10</small></span>
+                                        </div>
+                                        <div class="system-progress-track">
+                                            <div class="system-progress-fill" style="width: 76%; background: #93c5fd;"></div>
+                                        </div>
+                                        <div class="system-desc-sub">Flashback frequency, mental clarity, attention span</div>
+                                    </div>
+                                    <span class="system-status-pill strain"><i class="fas fa-triangle-exclamation"></i> Moderate Strain</span>
+                                </div>
+
+                                <!-- 5. Distress Tolerance & DBT Mastery -->
+                                <div class="system-item-row" data-category="stabilized" id="sysRowDistress" onclick="selectHealthSystem('distress')">
+                                    <div class="system-icon-circle" style="background: #fef3c7; color: #b45309;">
+                                        <i class="fas fa-shield-halved"></i>
+                                    </div>
+                                    <div class="system-info-col">
+                                        <div class="system-name-row">
+                                            <span class="system-title">Distress Tolerance & Grounding (DBT)</span>
+                                            <span class="system-score-val">8.5 <small>of 10</small></span>
+                                        </div>
+                                        <div class="system-progress-track">
+                                            <div class="system-progress-fill" style="width: 85%; background: #fbbf24;"></div>
+                                        </div>
+                                        <div class="system-desc-sub">TIPP skills mastery & acute panic de-escalation</div>
+                                    </div>
+                                    <span class="system-status-pill stabilized"><i class="fas fa-check"></i> Stabilized</span>
+                                </div>
+
+                                <!-- 6. Gastro-Emotional Axis -->
+                                <div class="system-item-row" data-category="stabilized" id="sysRowGastro" onclick="selectHealthSystem('gastro')">
+                                    <div class="system-icon-circle" style="background: #f0fdf4; color: #166534;">
+                                        <i class="fas fa-wheat-awn"></i>
+                                    </div>
+                                    <div class="system-info-col">
+                                        <div class="system-name-row">
+                                            <span class="system-title">Enteric Gut-Brain Somatic Axis</span>
+                                            <span class="system-score-val">8.0 <small>of 10</small></span>
+                                        </div>
+                                        <div class="system-progress-track">
+                                            <div class="system-progress-fill" style="width: 80%; background: #84cc16;"></div>
+                                        </div>
+                                        <div class="system-desc-sub">Psychosomatic muscle tension & digestive calm</div>
+                                    </div>
+                                    <span class="system-status-pill stabilized"><i class="fas fa-check"></i> Stabilized</span>
+                                </div>
+                            </div>
+
+                            <!-- Dynamic Simulator Recalculator Footer -->
+                            <div class="simulator-slider-box">
+                                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                                    <span style="font-size: 0.8125rem; font-weight: 700; color: #475569;">
+                                        <i class="fas fa-sliders" style="color: #6366f1;"></i> Live Resilience Simulator
+                                    </span>
+                                    <span id="simulatorScoreTag" style="font-size: 0.8125rem; font-weight: 700; color: #1e293b;">Overall: 8.8 / 10</span>
+                                </div>
+                                <input type="range" class="simulator-range-input" id="simulatorRangeInput" min="5.0" max="10.0" step="0.1" value="8.8" oninput="handleSimulatorScoreChange(this.value)">
+                                <div style="display: flex; justify-content: space-between; font-size: 0.7rem; color: #94a3b8; margin-top: 4px;">
+                                    <span>5.0 (Acute Trauma Strain)</span>
+                                    <span>8.8 (Current)</span>
+                                    <span>10.0 (Optimal Resilience)</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 9. How It Works Section -->
+        <section class="how-it-works-section" id="how-it-works" aria-labelledby="howItWorksHeading">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-eyebrow">Clear & Simple Care Pathway</span>
+                    <h2 id="howItWorksHeading">How It Works</h2>
+                    <p>Four easy, supportive steps to transition from acute distress to structured trauma counseling and recovery.</p>
+                </div>
+
+                <div class="steps-grid">
+                    <div class="step-card">
+                        <div class="step-number-circle">1</div>
+                        <h3>Check-In & Screening</h3>
+                        <p>Complete our quick digital or voice assessment. Share your symptoms or concerns confidentially or anonymously.</p>
+                    </div>
+
+                    <div class="step-card">
+                        <div class="step-number-circle">2</div>
+                        <h3>AI Trauma Scoring</h3>
+                        <p>Our trauma-informed algorithms analyze stress markers, emotional intensity, and clinical severity levels in real time.</p>
+                    </div>
+
+                    <div class="step-card">
+                        <div class="step-number-circle">3</div>
+                        <h3>Instant De-escalation</h3>
+                        <p>Access immediate grounding tools, 4-7-8 breathing cycles, and your personalized downloadable PDF Clinical Report.</p>
+                    </div>
+
+                    <div class="step-card">
+                        <div class="step-number-circle">4</div>
+                        <h3>Counselor Care & Healing</h3>
+                        <p>Connect with accredited psychological counselors and track your case through NHAA's psycho-social network.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 10. Success Stories & Testimonials -->
+        <section class="testimonials-section" aria-labelledby="testimonialsHeading">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-eyebrow">Real Survivor Voices</span>
+                    <h2 id="testimonialsHeading">Restoring Hope & Mental Wellbeing</h2>
+                    <p>Read how survivors and victims have regained stability and dignity with MindCare AI and NHAA support.</p>
+                </div>
+
+                <div class="testimonials-grid">
+                    <div class="testimonial-card">
+                        <div>
+                            <div class="star-rating">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            </div>
+                            <p class="testimonial-quote">
+                                "After experiencing a traumatic road accident, the flashbacks were unbearable. MindCare AI triaged my condition and an expert trauma counselor called me within 3 hours. It was a lifeline when I had nowhere else to turn."
+                            </p>
+                        </div>
+                        <div class="testimonial-user-row">
+                            <div class="user-avatar-initials">PS</div>
+                            <div>
+                                <div class="user-name-title">Priya Sharma</div>
+                                <div class="user-location-sub">Accident Survivor • Mumbai</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="testimonial-card">
+                        <div>
+                            <div class="star-rating">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            </div>
+                            <p class="testimonial-quote">
+                                "The Voice Assessment made it so easy because I was too shaken to type. The 4-7-8 breathing exercise grounded me immediately in the middle of a panic attack at 2 AM. Thank you for this public service."
+                            </p>
+                        </div>
+                        <div class="testimonial-user-row">
+                            <div class="user-avatar-initials" style="background: var(--gradient-warm);">RK</div>
+                            <div>
+                                <div class="user-name-title">Rajesh Kumar</div>
+                                <div class="user-location-sub">NHAA Complainant • New Delhi</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="testimonial-card">
+                        <div>
+                            <div class="star-rating">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            </div>
+                            <p class="testimonial-quote">
+                                "Being able to download a PDF report with my Reference ID helped me communicate what I was going through to my doctor. The confidentiality and compassion of this platform is unmatched."
+                            </p>
+                        </div>
+                        <div class="testimonial-user-row">
+                            <div class="user-avatar-initials" style="background: var(--gradient-cyan);">AM</div>
+                            <div>
+                                <div class="user-name-title">Ananya Mukherjee</div>
+                                <div class="user-location-sub">Trauma Recovery • Bengaluru</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 11. Educational Self-Care Resources -->
+        <section class="resources-section" id="resources" aria-labelledby="resourcesHeading">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-eyebrow">Psycho-Education Guides</span>
+                    <h2 id="resourcesHeading">Mental Health & Recovery Resources</h2>
+                    <p>Evidence-based coping strategies and psycho-education to help you understand your nervous system's stress responses.</p>
+                </div>
+
+                <div class="resources-grid">
+                    <div class="resource-card">
+                        <div class="resource-banner-header blue"><i class="fas fa-brain"></i></div>
+                        <div class="resource-content">
+                            <span class="resource-tag blue">Trauma & Physiology</span>
+                            <h3>Recognizing Early Trauma Signals in Your Body</h3>
+                            <p>Understand hyper-arousal, muscle constrictions, and why the body keeps score following a sudden shock or atrocity.</p>
+                            <span class="resource-link-btn" onclick="document.getElementById('chatbot').scrollIntoView({behavior: 'smooth'})">
+                                Discuss with AI Companion <i class="fas fa-arrow-right"></i>
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="resource-card">
+                        <div class="resource-banner-header pink"><i class="fas fa-heart-pulse"></i></div>
+                        <div class="resource-content">
+                            <span class="resource-tag red">Grounding Techniques</span>
+                            <h3>5-Minute De-escalation Techniques for Acute Panic</h3>
+                            <p>Practical grounding exercises, bilateral tapping, and sensory anchors you can use anywhere to regain control.</p>
+                            <span class="resource-link-btn" onclick="document.getElementById('breathing').scrollIntoView({behavior: 'smooth'})">
+                                Open Breathing Studio <i class="fas fa-arrow-right"></i>
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="resource-card">
+                        <div class="resource-banner-header cyan"><i class="fas fa-people-roof"></i></div>
+                        <div class="resource-content">
+                            <span class="resource-tag green">Support Systems</span>
+                            <h3>Building Your Safe Recovery Support Circle</h3>
+                            <p>How to access legal advocacy through NHAA (14566), establish personal boundaries, and build a trauma-informed care circle.</p>
+                            <span class="resource-link-btn" onclick="document.getElementById('nhaa-integration').scrollIntoView({behavior: 'smooth'})">
+                                View NHAA Network <i class="fas fa-arrow-right"></i>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 12. FAQ Section -->
+        <section class="faq-section" id="faq" aria-labelledby="faqHeading">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-eyebrow">Frequently Asked Questions</span>
+                    <h2 id="faqHeading">Got Questions? We Have Answers</h2>
+                    <p>Clear, transparent answers about our screening tools, confidentiality protocols, and counselor network.</p>
+                </div>
+
+                <div class="faq-accordion-container">
+                    <div class="faq-item active">
+                        <button class="faq-question-btn">
+                            <span>What is MindCare AI and how is it connected to NHAA (14566)?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="faq-answer-content">
+                            MindCare AI is an AI-assisted psychological first-aid and trauma screening portal developed to support victims and complainants registered with the National Helpline Against Atrocities (14566). While NHAA provides administrative and legal support, MindCare AI delivers the psycho-social and clinical counseling response.
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question-btn">
+                            <span>Is my assessment completely confidential and secure?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="faq-answer-content">
+                            Yes. All personal information and responses are secured with 256-bit AES encryption in strict compliance with the Indian Digital Personal Data Protection Act. You can also choose the "Submit Anonymously" option to protect your identity entirely.
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question-btn">
+                            <span>How quickly will a licensed counselor follow up with me?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="faq-answer-content">
+                            For high-risk cases (stress levels 8-10 or acute trauma indicators), a certified counselor will reach out within 2 to 4 hours. For standard assessments, counselor review and outreach occurs within 24 hours.
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question-btn">
+                            <span>Is this service completely free of cost?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="faq-answer-content">
+                            Yes. MindCare AI is a public-service initiative in partnership with the Ministry of Social Justice & Empowerment and NHAA (14566). All screenings, AI chatbot sessions, and counselor callbacks are 100% free.
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question-btn">
+                            <span>Does the AI assessment replace a doctor or clinical psychiatrist?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="faq-answer-content">
+                            MindCare AI is a psychological screening and triage tool designed to provide immediate emotional first-aid and connect you with human healthcare professionals. It complements, but does not substitute, formal medical diagnosis or emergency psychiatric hospital admission.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 13. Bottom Call-To-Action (CTA) -->
+        <section class="bottom-cta-section" aria-labelledby="ctaHeading">
+            <div class="container">
+                <h2 id="ctaHeading">You Don't Have to Carry the Weight Alone</h2>
+                <p>Take the first step towards recovery with our safe, supportive assessment or speak directly with our 24/7 crisis counselors.</p>
+                <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+                    <a href="#assessment" class="btn btn-secondary btn-large">
+                        <i class="fas fa-heart"></i> Begin Assessment Now
+                    </a>
+                    <a href="tel:14566" class="btn btn-urgent btn-large">
+                        <i class="fas fa-phone-volume"></i> Call 14566 Toll-Free
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 14. Main Footer -->
+    <footer class="main-footer" role="contentinfo">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 16px;">
+                        <i class="fas fa-brain" style="color: #6366f1; font-size: 1.6rem;"></i>
+                        <h3 style="margin: 0;">MindCare AI</h3>
+                    </div>
+                    <p>An official psycho-social initiative under the National Helpline Against Atrocities (NHAA - 14566) providing AI-powered stress and trauma assessment for victims, complainants, and families.</p>
+                    <p style="color: #64748b; font-size: 0.8125rem;">Smart India Hackathon 2026 • Problem Statement SIH26093</p>
+                </div>
+
+                <div class="footer-col">
+                    <h3>Quick Navigation</h3>
+                    <ul class="footer-links-list">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#nhaa-integration">NHAA Portal Link</a></li>
+                        <li><a href="#features">Platform Features</a></li>
+                        <li><a href="#assessment">Take Assessment</a></li>
+                        <li><a href="#breathing">Mindful Breathing</a></li>
+                        <li><a href="#chatbot">AI Support Companion</a></li>
+                        <li><a href="#" class="open-privacy-modal-btn">Privacy Policy</a></li>
+                        <li><a href="#" class="open-terms-modal-btn">Terms of Service</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h3>24/7 Crisis Helplines</h3>
+                    <ul class="footer-contacts-list">
+                        <li><i class="fas fa-phone"></i> <span>NHAA Helpline: <a href="tel:14566">14566 (Toll-Free)</a></span></li>
+                        <li><i class="fas fa-ambulance"></i> <span>Medical Emergency: <a href="tel:108">108</a></span></li>
+                        <li><i class="fas fa-shield-halved"></i> <span>Police Hotline: <a href="tel:100">100</a></span></li>
+                        <li><i class="fas fa-venus"></i> <span>Women Helpline: <a href="tel:1091">1091</a></span></li>
+                        <li><i class="fas fa-headset"></i> <span>AASRA Suicide Support: <a href="tel:9820466726">9820466726</a></span></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h3>Nodal Authority</h3>
+                    <p>
+                        <strong>Ministry of Social Justice & Empowerment</strong><br>
+                        Government of India<br>
+                        Shastri Bhawan, New Delhi - 110001
+                    </p>
+                    <p style="margin-top: 10px;">
+                        <i class="fas fa-envelope" style="color: #6366f1;"></i> support@mindcare-nhaa.gov.in
+                    </p>
+                </div>
+            </div>
+
+            <div class="footer-bottom-bar">
+                <p>&copy; 2026 MindCare AI - NHAA Portal. All rights reserved. | Developed for SIH 2026 | Confidential Public Health Portal</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ==========================================================================
+       15. Interactive Modals
+       ========================================================================== -->
+
+    <!-- Floating Emergency SOS Trigger Button -->
+    <button class="floating-sos-trigger" id="floatingSosBtn" aria-label="Emergency SOS Trigger" title="Immediate Crisis Help">
+        <i class="fas fa-triangle-exclamation"></i>
+    </button>
+
+    <!-- Emergency SOS Modal -->
+    <div class="modal-overlay" id="emergencySosModal" role="dialog" aria-modal="true" aria-labelledby="sosModalTitle">
+        <div class="modal-card crisis-card">
+            <button class="modal-close-btn" aria-label="Close Modal"><i class="fas fa-times"></i></button>
+            <div class="crisis-icon-pulse"><i class="fas fa-ambulance"></i></div>
+            <h2 id="sosModalTitle" style="color: var(--danger); font-size: 1.8rem; margin-bottom: 10px;">Immediate Emergency Assistance</h2>
+            <p style="color: var(--text-secondary); font-size: 1rem;">
+                If you or someone nearby is experiencing acute danger, severe trauma, or panic, call one of our 24/7 dedicated hotlines right now:
+            </p>
+
+            <div class="crisis-numbers-grid">
+                <div class="crisis-call-row">
+                    <span><i class="fas fa-shield-alt" style="color: #6366f1;"></i> NHAA Atrocities Helpline:</span>
+                    <a href="tel:14566"><i class="fas fa-phone"></i> 14566</a>
+                </div>
+                <div class="crisis-call-row">
+                    <span><i class="fas fa-truck-medical" style="color: #ef4444;"></i> Medical Emergency Ambulance:</span>
+                    <a href="tel:108"><i class="fas fa-phone"></i> 108</a>
+                </div>
+                <div class="crisis-call-row">
+                    <span><i class="fas fa-user-shield" style="color: #0284c7;"></i> Police Emergency:</span>
+                    <a href="tel:100"><i class="fas fa-phone"></i> 100</a>
+                </div>
+                <div class="crisis-call-row">
+                    <span><i class="fas fa-venus" style="color: #db2777;"></i> Women Safety Helpline:</span>
+                    <a href="tel:1091"><i class="fas fa-phone"></i> 1091</a>
+                </div>
+                <div class="crisis-call-row">
+                    <span><i class="fas fa-heart-pulse" style="color: #10b981;"></i> AASRA 24/7 Suicide Prevention:</span>
+                    <a href="tel:9820466726"><i class="fas fa-phone"></i> 9820466726</a>
+                </div>
+            </div>
+
+            <button class="btn btn-urgent close-modal-trigger" style="width: 100%;">
+                <i class="fas fa-check"></i> I Understand & Return
+            </button>
+        </div>
+    </div>
+
+    <!-- Crisis Alert Intervention Modal (Auto Triggered upon Distress keywords or Stress >= 9) -->
+    <div class="modal-overlay" id="crisisAlertModal" role="dialog" aria-modal="true" aria-labelledby="crisisModalTitle">
+        <div class="modal-card crisis-card">
+            <button class="modal-close-btn" aria-label="Close Modal"><i class="fas fa-times"></i></button>
+            <div class="crisis-icon-pulse"><i class="fas fa-heart-crack"></i></div>
+            <h2 id="crisisModalTitle" style="color: var(--danger); font-size: 1.8rem; margin-bottom: 10px;">We Are Here With You</h2>
+            <p id="crisisModalMessage" style="color: var(--text-secondary); font-size: 1.05rem; line-height: 1.6;">
+                It sounds like you are going through a profoundly challenging moment. Please know you are not alone and your life matters. Trained counselors are ready to speak with you free of charge.
+            </p>
+
+            <div class="crisis-numbers-grid">
+                <div class="crisis-call-row">
+                    <span>NHAA Support (Toll-Free):</span>
+                    <a href="tel:14566"><i class="fas fa-phone"></i> 14566</a>
+                </div>
+                <div class="crisis-call-row">
+                    <span>AASRA Lifeline (24/7):</span>
+                    <a href="tel:9820466726"><i class="fas fa-phone"></i> 9820466726</a>
+                </div>
+                <div class="crisis-call-row">
+                    <span>Emergency Ambulance:</span>
+                    <a href="tel:108"><i class="fas fa-phone"></i> 108</a>
+                </div>
+            </div>
+
+            <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
+                <a href="tel:14566" class="btn btn-urgent btn-large">
+                    <i class="fas fa-phone-volume"></i> Call 14566 Now
+                </a>
+                <button class="btn btn-secondary close-modal-trigger">
+                    <i class="fas fa-arrow-left"></i> Return to Portal
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Voice Assessment Studio Modal -->
+    <div class="modal-overlay" id="voiceAssessmentModal" role="dialog" aria-modal="true" aria-labelledby="voiceModalTitle">
+        <div class="modal-card" style="text-align: center; max-width: 620px;">
+            <button class="modal-close-btn" id="closeVoiceModalBtn" aria-label="Close Modal"><i class="fas fa-times"></i></button>
+            
+            <div style="width: 80px; height: 80px; border-radius: 50%; background: var(--gradient-brand); color: white; display: flex; align-items: center; justify-content: center; font-size: 2.2rem; margin: 0 auto 18px;" id="voiceMicPulseIcon">
+                <i class="fas fa-microphone"></i>
+            </div>
+
+            <h2 id="voiceModalTitle" style="font-size: 1.75rem; margin-bottom: 8px;">Voice Assessment Studio</h2>
+            <p style="color: var(--text-secondary); font-size: 0.9375rem; margin-bottom: 20px;">
+                Speak freely in your preferred language. Your words will be transcribed securely and applied to your assessment form.
+            </p>
+
+            <!-- Language Pills -->
+            <div style="display: flex; gap: 10px; justify-content: center; margin-bottom: 20px; flex-wrap: wrap;">
+                <button class="btn btn-sm btn-secondary lang-pill-btn active" data-lang="en-US">
+                    <i class="fas fa-globe"></i> English
+                </button>
+                <button class="btn btn-sm btn-secondary lang-pill-btn" data-lang="hi-IN">
+                    <i class="fas fa-globe"></i> हिंदी (Hindi)
+                </button>
+                <button class="btn btn-sm btn-secondary lang-pill-btn" data-lang="te-IN">
+                    <i class="fas fa-globe"></i> తెలుగు (Telugu)
+                </button>
+            </div>
+
+            <div id="voiceRecognitionStatus" style="margin-bottom: 12px; font-size: 0.875rem;">
+                <span style="color: #10b981; font-weight: 600;"><i class="fas fa-circle fa-beat" style="color: #10b981; font-size: 0.7rem;"></i> Initializing Microphone...</span>
+            </div>
+
+            <div style="background: var(--bg-light); border: 2px dashed var(--trust-blue); border-radius: var(--radius-lg); padding: 20px; min-height: 120px; max-height: 200px; overflow-y: auto; text-align: left; margin-bottom: 24px;">
+                <div style="font-size: 0.75rem; font-weight: 700; color: var(--text-muted); margin-bottom: 6px; text-transform: uppercase;">
+                    <i class="fas fa-comment-dots"></i> Live Speech Transcript:
+                </div>
+                <p id="voiceTranscriptDisplay" style="color: var(--text-primary); font-size: 1rem; line-height: 1.6; font-style: italic;">
+                    Listening... Please speak your thoughts, concerns, or recent experiences.
+                </p>
+            </div>
+
+            <div style="display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;">
+                <button class="btn btn-calm btn-large" id="applyVoiceTranscriptBtn">
+                    <i class="fas fa-check"></i> Apply to Assessment Form
+                </button>
+                <button class="btn btn-secondary" onclick="startVoiceRecording()">
+                    <i class="fas fa-rotate-right"></i> Restart Recording
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Portal Authentication Modal -->
+    <div class="modal-overlay" id="authModal" role="dialog" aria-modal="true" aria-labelledby="authModalTitle">
+        <div class="modal-card" style="max-width: 480px;">
+            <button class="modal-close-btn" aria-label="Close Modal"><i class="fas fa-times"></i></button>
+            <div style="text-align: center; margin-bottom: 24px;">
+                <div class="logo-icon-wrapper" style="margin: 0 auto 12px;">
+                    <i class="fas fa-brain"></i>
+                </div>
+                <h2 id="authModalTitle" style="font-size: 1.6rem;">NHAA Survivor Portal</h2>
+                <p style="font-size: 0.875rem; color: var(--text-muted);">Log in to track prior assessments & counselor callbacks</p>
+            </div>
+
+            <form onsubmit="event.preventDefault(); showToast('Login session authenticated successfully!', 'success'); document.getElementById('authModal').classList.remove('active');" style="display: flex; flex-direction: column; gap: 16px;">
+                <div class="form-group">
+                    <label for="authEmail"><i class="fas fa-envelope"></i> Email or Registered Mobile</label>
+                    <input type="text" id="authEmail" placeholder="Enter your email or phone" required>
+                </div>
+                <div class="form-group">
+                    <label for="authPassword"><i class="fas fa-lock"></i> Password / OTP</label>
+                    <input type="password" id="authPassword" placeholder="Enter password or OTP" required>
+                </div>
+                <button type="submit" class="btn btn-primary btn-large" style="width: 100%;">
+                    <i class="fas fa-sign-in-alt"></i> Access Secure Portal
+                </button>
+            </form>
+            <p style="font-size: 0.75rem; color: var(--text-muted); text-align: center; margin-top: 18px;">
+                <i class="fas fa-lock"></i> Protected by 256-bit AES encryption & NHAA security protocols.
+            </p>
+        </div>
+    </div>
+
+    <!-- Privacy Policy Modal -->
+    <div class="modal-overlay" id="privacyPolicyModal" role="dialog" aria-modal="true" aria-labelledby="privacyModalTitle">
+        <div class="modal-card">
+            <button class="modal-close-btn" aria-label="Close Modal"><i class="fas fa-times"></i></button>
+            <h2 id="privacyModalTitle" style="margin-bottom: 16px; font-size: 1.7rem;">MindCare AI - Privacy Statement</h2>
+            <div style="color: var(--text-secondary); font-size: 0.9375rem; line-height: 1.7; max-height: 60vh; overflow-y: auto; padding-right: 10px;">
+                <p><strong>1. Data Sovereignty & Confidentiality:</strong> MindCare AI operates as a public-service mental health support system under the National Helpline Against Atrocities (14566). All clinical responses and assessments are protected under the Indian Digital Personal Data Protection (DPDP) Act.</p>
+                <br>
+                <p><strong>2. Anonymous Reporting:</strong> Users may choose to submit assessments anonymously. No IP addresses or device trackers are linked to mental health evaluations.</p>
+                <br>
+                <p><strong>3. Counselor Sharing:</strong> Your information is only accessible by accredited, certified trauma psychologists assigned to your case for therapeutic care and case correlation.</p>
+                <br>
+                <p><strong>4. Security Protocols:</strong> All traffic is encrypted via TLS 1.3 and stored in compliant government cloud infrastructure.</p>
+            </div>
+            <button class="btn btn-primary close-modal-trigger" style="width: 100%; margin-top: 24px;">Close Privacy Policy</button>
+        </div>
+    </div>
+
+    <!-- Terms of Service Modal -->
+    <div class="modal-overlay" id="termsModal" role="dialog" aria-modal="true" aria-labelledby="termsModalTitle">
+        <div class="modal-card">
+            <button class="modal-close-btn" aria-label="Close Modal"><i class="fas fa-times"></i></button>
+            <h2 id="termsModalTitle" style="margin-bottom: 16px; font-size: 1.7rem;">Terms of Service</h2>
+            <div style="color: var(--text-secondary); font-size: 0.9375rem; line-height: 1.7; max-height: 60vh; overflow-y: auto; padding-right: 10px;">
+                <p><strong>1. Nature of Service:</strong> MindCare AI provides AI-assisted psychological screening and emergency resource coordination. It is not an emergency hospital inpatient admission platform.</p>
+                <br>
+                <p><strong>2. Emergency Situations:</strong> If you are experiencing imminent physical danger or life-threatening psychiatric distress, call 14566, 108, or 100 immediately.</p>
+                <br>
+                <p><strong>3. Non-Commercial Guarantee:</strong> This service is entirely free of charge for all victims, complainants, and families.</p>
+            </div>
+            <button class="btn btn-primary close-modal-trigger" style="width: 100%; margin-top: 24px;">Acknowledge & Close</button>
+        </div>
+    </div>
+
+    <!-- TheraHive DBT Course & Peer Circle Registration Modal -->
+    <div class="modal-overlay" id="dbtRegistrationModal" role="dialog" aria-modal="true" aria-labelledby="dbtModalTitle">
+        <div class="modal-card" style="max-width: 560px; border-top: 5px solid #e59819;">
+            <button class="modal-close-btn" id="closeDbtModalBtn" aria-label="Close Modal"><i class="fas fa-times"></i></button>
+            
+            <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 20px;">
+                <div style="width: 52px; height: 52px; border-radius: 14px; background: #fffbeb; border: 2px solid #fde68a; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; flex-shrink: 0;">
+                    🐝
+                </div>
+                <div>
+                    <span style="font-size: 0.75rem; font-weight: 700; color: #b4710b; text-transform: uppercase; letter-spacing: 0.5px;">TheraHive • DBT Community Care</span>
+                    <h2 id="dbtModalTitle" style="font-size: 1.45rem; margin: 0; color: #1e293b;">Join a DBT Skills Circle</h2>
+                </div>
+            </div>
+
+            <p style="font-size: 0.875rem; color: var(--text-secondary); margin-bottom: 20px; line-height: 1.5;">
+                Join a small, confidential 6–8 member weekly cohort led by licensed clinical psychologists. Proven DBT techniques for emotion regulation, distress tolerance, and trauma recovery.
+            </p>
+
+            <form id="dbtRegistrationForm" onsubmit="handleDbtRegistrationSubmit(event)" style="display: flex; flex-direction: column; gap: 16px;">
+                <div class="form-group">
+                    <label for="dbtCourseSelect"><i class="fas fa-graduation-cap" style="color: #e59819;"></i> Select DBT Course / Circle *</label>
+                    <select id="dbtCourseSelect" required>
+                        <option value="TIPP Crisis Distress Tolerance">TIPP Crisis Distress Tolerance (Thu • 6:30 PM IST)</option>
+                        <option value="Radical Acceptance & Healing">Radical Acceptance & Healing (Sat • 11:00 AM IST)</option>
+                        <option value="DEAR MAN: Boundary Defense">DEAR MAN: Boundary Defense (Sun • 4:00 PM IST)</option>
+                        <option value="Survivor Peer Connection Circle">Survivor Peer Connection Circle (Tue • 7:00 PM IST)</option>
+                        <option value="Mindfulness & Wise Mind Module">Mindfulness & Wise Mind (Tue • 5:30 PM IST)</option>
+                        <option value="Somatic Regulation Circle">Somatic Vagal Reset (Fri • 6:00 PM IST)</option>
+                        <option value="Free Intro & Orientation Session">Free Intro & Orientation Session (Wed • 7:00 PM IST)</option>
+                    </select>
+                </div>
+
+                <div class="form-row-2">
+                    <div class="form-group">
+                        <label for="dbtParticipantName"><i class="fas fa-user"></i> Full Name or Alias *</label>
+                        <input type="text" id="dbtParticipantName" placeholder="e.g. Maya or Anonymous" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="dbtContactInfo"><i class="fas fa-envelope"></i> Email or Mobile *</label>
+                        <input type="text" id="dbtContactInfo" placeholder="For encrypted Zoom room" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="dbtPreferredSlot"><i class="fas fa-clock" style="color: #e59819;"></i> Preferred Format</label>
+                    <select id="dbtPreferredSlot">
+                        <option value="Evening Cohort (6:30 PM - 7:30 PM IST)">Live Evening Cohort (6:30 PM - 7:30 PM IST)</option>
+                        <option value="Weekend Morning (11:00 AM - 12:00 PM IST)">Weekend Morning (11:00 AM - 12:00 PM IST)</option>
+                        <option value="Flexible / Async Modules + Live Q&A">Flexible / Async Modules + Live Q&A</option>
+                    </select>
+                </div>
+
+                <div style="background: #faf7f2; border: 1px dashed #e2e8f0; border-radius: var(--radius-md); padding: 12px 16px; display: flex; align-items: center; gap: 10px;">
+                    <input type="checkbox" id="dbtNhaaSurvivorCheck" checked style="width: 18px; height: 18px; accent-color: #e59819;">
+                    <label for="dbtNhaaSurvivorCheck" style="margin: 0; font-size: 0.8125rem; color: #475569; font-weight: 500; cursor: pointer;">
+                        NHAA Complainant / Survivor (Guarantees 100% Free Public Health Access)
+                    </label>
+                </div>
+
+                <button type="submit" class="btn btn-amber btn-large" style="width: 100%; margin-top: 6px;">
+                    <i class="fas fa-check-circle"></i> Reserve My Free Cohort Seat
+                </button>
+            </form>
+
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 16px; font-size: 0.75rem; color: var(--text-muted);">
+                <span><i class="fas fa-lock"></i> 100% Confidential & Encrypted</span>
+                <span><i class="fas fa-shield-halved"></i> DPDP Act Compliant</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Plan Check-up / Counselor Consultation Booking Modal -->
+    <div class="modal-overlay" id="counselorBookingModal" role="dialog" aria-modal="true" aria-labelledby="bookingModalTitle">
+        <div class="modal-card" style="max-width: 520px; border-top: 5px solid #18181b;">
+            <button class="modal-close-btn" id="closeBookingModalBtn" aria-label="Close Modal"><i class="fas fa-times"></i></button>
+            <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 20px;">
+                <div style="width: 50px; height: 50px; border-radius: 14px; background: #18181b; color: white; display: flex; align-items: center; justify-content: center; font-size: 1.5rem;">
+                    <i class="fas fa-calendar-check"></i>
+                </div>
+                <div>
+                    <span style="font-size: 0.75rem; font-weight: 700; color: var(--primary); text-transform: uppercase; letter-spacing: 0.5px;">Clinical Follow-Up</span>
+                    <h2 id="bookingModalTitle" style="font-size: 1.4rem; margin: 0; color: #1e293b;">Plan Counselor Check-Up</h2>
+                </div>
+            </div>
+
+            <p style="font-size: 0.875rem; color: var(--text-secondary); margin-bottom: 18px; line-height: 1.5;">
+                Schedule a 30-minute encrypted 1-on-1 video or voice consultation with an accredited NHAA trauma specialist based on your current <strong>8.8 Bio-Somatic Score</strong>.
+            </p>
+
+            <form id="counselorBookingForm" onsubmit="handleCounselorBookingSubmit(event)" style="display: flex; flex-direction: column; gap: 14px;">
+                <div class="form-group">
+                    <label for="bookingSpecialty"><i class="fas fa-user-doctor"></i> Consultation Focus</label>
+                    <select id="bookingSpecialty">
+                        <option value="Autonomic Trauma & Panic Stabilisation">Autonomic Trauma & Panic Stabilisation</option>
+                        <option value="Flashback & Intrusive Memory De-escalation">Flashback & Intrusive Memory De-escalation</option>
+                        <option value="Sleep & Neuro-Endocrine Recovery">Sleep & Neuro-Endocrine Recovery</option>
+                        <option value="NHAA Legal-Psychological Rehabilitation">NHAA Legal-Psychological Rehabilitation</option>
+                    </select>
+                </div>
+
+                <div class="form-row-2">
+                    <div class="form-group">
+                        <label for="bookingDate"><i class="fas fa-calendar-day"></i> Preferred Date</label>
+                        <input type="date" id="bookingDate" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="bookingTime"><i class="fas fa-clock"></i> Preferred Slot</label>
+                        <select id="bookingTime">
+                            <option value="Morning (10:00 AM - 11:00 AM)">Morning (10:00 AM)</option>
+                            <option value="Afternoon (2:30 PM - 3:30 PM)">Afternoon (2:30 PM)</option>
+                            <option value="Evening (6:30 PM - 7:30 PM)">Evening (6:30 PM)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="bookingContact"><i class="fas fa-phone"></i> Phone or Email for Consultation Room PIN</label>
+                    <input type="text" id="bookingContact" placeholder="e.g. +91 98765 43210 or email" required>
+                </div>
+
+                <button type="submit" class="btn btn-dark btn-large" style="width: 100%; margin-top: 6px;">
+                    <i class="fas fa-check"></i> Confirm Free Counselor Booking
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Live Mobile Phone Device Simulator Modal -->
+    <div class="modal-overlay" id="mobileSimulatorModal" role="dialog" aria-modal="true" aria-labelledby="simulatorModalTitle">
+        <div class="mobile-sim-container">
+            <button class="mobile-sim-close-btn" onclick="closeMobileSimulator()" aria-label="Close Simulator">
+                <i class="fas fa-times"></i> Close Device Preview
+            </button>
+            
+            <!-- iPhone Device Frame Container -->
+            <div class="iphone-frame">
+                <!-- Dynamic Island -->
+                <div class="iphone-dynamic-island"></div>
+
+                <!-- Status Bar -->
+                <div class="iphone-status-bar">
+                    <span class="sim-time">9:41</span>
+                    <div class="sim-status-icons">
+                        <i class="fas fa-signal"></i>
+                        <i class="fas fa-wifi"></i>
+                        <i class="fas fa-battery-full"></i>
+                    </div>
+                </div>
+
+                <!-- Scrollable Mobile App Canvas -->
+                <div class="iphone-screen-content">
+                    <!-- Top Back Navigation -->
+                    <div class="sim-top-nav">
+                        <div class="sim-back-circle" onclick="closeMobileSimulator()" title="Back">
+                            <i class="fas fa-arrow-left"></i>
+                        </div>
+                    </div>
+
+                    <!-- Donut Resilience Ring Widget -->
+                    <div class="sim-score-ring-wrapper">
+                        <svg viewBox="0 0 320 320" class="sim-donut-svg">
+                            <circle cx="160" cy="160" r="110" fill="none" stroke="#f5f2eb" stroke-width="24" />
+                            
+                            <!-- Arcs -->
+                            <circle cx="160" cy="160" r="110" fill="none" stroke="#fde047" stroke-width="24" stroke-linecap="round" stroke-dasharray="85 606" stroke-dashoffset="155" />
+                            <circle cx="160" cy="160" r="110" fill="none" stroke="#a3e635" stroke-width="24" stroke-linecap="round" stroke-dasharray="95 596" stroke-dashoffset="60" />
+                            <circle cx="160" cy="160" r="110" fill="none" stroke="#84cc16" stroke-width="24" stroke-linecap="round" stroke-dasharray="85 606" stroke-dashoffset="-45" />
+                            <circle cx="160" cy="160" r="110" fill="none" stroke="#f472b6" stroke-width="24" stroke-linecap="round" stroke-dasharray="105 586" stroke-dashoffset="-140" />
+                            <circle cx="160" cy="160" r="110" fill="none" stroke="#93c5fd" stroke-width="24" stroke-linecap="round" stroke-dasharray="90 601" stroke-dashoffset="-255" />
+                            <circle cx="160" cy="160" r="110" fill="none" stroke="#fbbf24" stroke-width="24" stroke-linecap="round" stroke-dasharray="75 616" stroke-dashoffset="-355" />
+                        </svg>
+
+                        <!-- Little Perimeter Icons -->
+                        <div class="sim-ring-icon s-icon-1"><i class="fas fa-shield-halved"></i></div>
+                        <div class="sim-ring-icon s-icon-2"><i class="fas fa-lungs"></i></div>
+                        <div class="sim-ring-icon s-icon-3"><i class="fas fa-wheat-awn"></i></div>
+                        <div class="sim-ring-icon s-icon-4"><i class="fas fa-heart-pulse"></i></div>
+                        <div class="sim-ring-icon s-icon-5"><i class="fas fa-brain"></i></div>
+                        <div class="sim-ring-icon s-icon-6"><i class="fas fa-dna"></i></div>
+
+                        <!-- Center Score -->
+                        <div class="sim-score-center-text">
+                            <div class="sim-score-big">8.8</div>
+                            <div class="sim-score-sub">your health score <i class="fas fa-circle-info" style="font-size: 0.65rem;"></i></div>
+                        </div>
+                    </div>
+
+                    <!-- Action Hub Row -->
+                    <div class="sim-action-row">
+                        <button class="sim-btn-dark-pill" onclick="openCounselorBookingModal()">Plan check-up</button>
+                        <div class="sim-icon-circle-btn" onclick="scrollToAssessment()"><i class="fas fa-stethoscope"></i></div>
+                        <div class="sim-icon-circle-btn" onclick="downloadClinicalDossier()"><i class="fas fa-file-medical"></i></div>
+                        <div class="sim-icon-circle-btn" onclick="showToast('Case dossier shared with NHAA counselor!', 'success')"><i class="fas fa-paper-plane"></i></div>
+                    </div>
+
+                    <!-- Intelly Assistant Alert Card -->
+                    <div class="sim-assistant-box">
+                        <div class="sim-assistant-tag">Intelly assistant</div>
+                        <div class="sim-assistant-msg">
+                            Taigo, your health score goes down <strong style="color: #be185d;">28% last week</strong>
+                        </div>
+                        <button class="sim-discuss-pill" onclick="discussScoreWithAI('Review my 28% health score drop and suggest recovery steps')">
+                            Let's discuss
+                        </button>
+                        <div class="sim-assistant-heart">
+                            <svg viewBox="0 0 100 100" width="70" height="70" fill="#f472b6" fill-opacity="0.3">
+                                <path d="M 50 85 C 20 60 5 40 15 22 C 25 5 45 12 50 25 C 55 12 75 5 85 22 C 95 40 80 60 50 85 Z"/>
+                            </svg>
+                        </div>
+                    </div>
+
+                    <!-- Health Systems Section -->
+                    <div class="sim-systems-section">
+                        <div class="sim-systems-hdr">
+                            <span>Health systems</span>
+                            <span class="sim-all-dropdown">All <i class="fas fa-chevron-down" style="font-size: 0.65rem;"></i></span>
+                        </div>
+
+                        <!-- Endocrine -->
+                        <div class="sim-system-card">
+                            <div class="sim-sys-icon" style="background: #fef08a; color: #854d0e;">
+                                <i class="fas fa-dna"></i>
+                            </div>
+                            <div class="sim-sys-details">
+                                <div class="sim-sys-title">Endocrine system</div>
+                                <div class="sim-sys-progress">
+                                    <div class="sim-progress-bar" style="width: 83%; background: #facc15;"></div>
+                                </div>
+                            </div>
+                            <div class="sim-sys-score">8.3 <small>of 10</small></div>
+                        </div>
+
+                        <!-- Cardio-Vagal -->
+                        <div class="sim-system-card">
+                            <div class="sim-sys-icon" style="background: #fce7f3; color: #be185d;">
+                                <i class="fas fa-heart-pulse"></i>
+                            </div>
+                            <div class="sim-sys-details">
+                                <div class="sim-sys-title">Cardio-vagal system</div>
+                                <div class="sim-sys-progress">
+                                    <div class="sim-progress-bar" style="width: 88%; background: #f472b6;"></div>
+                                </div>
+                            </div>
+                            <div class="sim-sys-score">8.8 <small>of 10</small></div>
+                        </div>
+
+                        <!-- Respiratory -->
+                        <div class="sim-system-card">
+                            <div class="sim-sys-icon" style="background: #ecfccb; color: #3f6212;">
+                                <i class="fas fa-lungs"></i>
+                            </div>
+                            <div class="sim-sys-details">
+                                <div class="sim-sys-title">Respiratory vagal tone</div>
+                                <div class="sim-sys-progress">
+                                    <div class="sim-progress-bar" style="width: 91%; background: #a3e635;"></div>
+                                </div>
+                            </div>
+                            <div class="sim-sys-score">9.1 <small>of 10</small></div>
+                        </div>
+
+                        <!-- Neuro-Cognitive -->
+                        <div class="sim-system-card">
+                            <div class="sim-sys-icon" style="background: #e0f2fe; color: #0369a1;">
+                                <i class="fas fa-brain"></i>
+                            </div>
+                            <div class="sim-sys-details">
+                                <div class="sim-sys-title">Neuro-cognitive memory</div>
+                                <div class="sim-sys-progress">
+                                    <div class="sim-progress-bar" style="width: 76%; background: #93c5fd;"></div>
+                                </div>
+                            </div>
+                            <div class="sim-sys-score">7.6 <small>of 10</small></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bottom Curved Floating Navigation Bar -->
+                <div class="iphone-bottom-nav">
+                    <div class="sim-nav-item active"><i class="fas fa-heart"></i></div>
+                    <div class="sim-nav-item"><i class="fas fa-calendar"></i></div>
+                    <div class="sim-nav-center-plus" onclick="scrollToAssessment()">
+                        <i class="fas fa-plus"></i>
+                    </div>
+                    <div class="sim-nav-item"><i class="fas fa-comment-dots"></i></div>
+                    <div class="sim-nav-item"><i class="fas fa-user"></i></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Application Script -->
+    <script src="app.js"></script>
+</body>
+</html>
