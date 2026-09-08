@@ -14,7 +14,7 @@ MindCare AI is a calm, trustworthy, crisis-aware mental health support portal re
 2. **Stress & Trauma Assessment (Form & Voice)**:
    - Form fields for personal details or complete **Anonymous Submission Mode**.
    - Interactive Stress Slider (1–10) with real-time emotion feedback and color-coded distress tiers.
-   - **Multilingual Voice Assessment Studio** with speech-to-text transcription for English, Hindi (हिंदी), and Telugu (తెలుగు).
+   - **Multilingual Voice Assessment Studio** with speech-to-text transcription for English, Hindi (हिंदी), Marathi (मराठी), and Telugu (తెలుగు).
    - Instant triage evaluation, unique Reference ID generation (`NHAA-MC-XXXXXX`), and counselor response SLA timeline (2–4 hrs for high-risk, 24 hrs standard).
    - **Clinical PDF Report Generation** using client-side `jsPDF`.
 3. **Automated Crisis Intervention Detection**:
