@@ -27,8 +27,34 @@
     <!-- jsPDF Library for Assessment Reports -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     
-    <!-- Main Style Sheet -->
-    <link rel="stylesheet" href="style.css">
+    <!-- Main Style Sheet with cache-buster -->
+    <link rel="stylesheet" href="style.css?v=3.0">
+
+    <script>
+        // Immediate stubs to guarantee instant click response
+        window.openVoiceAssessmentModal = function(e) {
+            if (e && typeof e.preventDefault === 'function') e.preventDefault();
+            var m = document.getElementById('voiceAssessmentModal');
+            if (m) {
+                m.classList.add('active');
+                m.style.display = 'flex';
+            }
+            if (typeof window.startVoiceRecording === 'function') {
+                try { window.startVoiceRecording(); } catch(err) {}
+            }
+        };
+        window.closeVoiceAssessmentModal = function(e) {
+            if (e && typeof e.preventDefault === 'function') e.preventDefault();
+            var m = document.getElementById('voiceAssessmentModal');
+            if (m) {
+                m.classList.remove('active');
+                m.style.display = 'none';
+            }
+            if (typeof window.stopVoiceRecording === 'function') {
+                try { window.stopVoiceRecording(); } catch(err) {}
+            }
+        };
+    </script>
 </head>
 <body>
 
@@ -1982,7 +2008,7 @@
     </div>
 
     <!-- Multilingual Regional Language Service & App Scripts -->
-    <script src="languages.js"></script>
-    <script src="app.js"></script>
+    <script src="languages.js?v=3.0"></script>
+    <script src="app.js?v=3.0"></script>
 </body>
 </html>

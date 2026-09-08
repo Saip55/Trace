@@ -389,11 +389,15 @@ let speechRecognizer = null;
 let currentLanguage = 'en-US';
 let capturedVoiceTranscript = '';
 
-function openVoiceAssessmentModal() {
+function openVoiceAssessmentModal(e) {
+    if (e && typeof e.preventDefault === 'function') {
+        try { e.preventDefault(); } catch (_) {}
+    }
     try {
         const modal = document.getElementById('voiceAssessmentModal');
         if (modal) {
             modal.classList.add('active');
+            modal.style.display = 'flex';
             // Ensure child elements exist and are reset
             const transcriptEl = document.getElementById('voiceTranscriptDisplay');
             if (transcriptEl) {
@@ -410,11 +414,15 @@ function openVoiceAssessmentModal() {
     }
 }
 
-function closeVoiceAssessmentModal() {
+function closeVoiceAssessmentModal(e) {
+    if (e && typeof e.preventDefault === 'function') {
+        try { e.preventDefault(); } catch (_) {}
+    }
     try {
         const modal = document.getElementById('voiceAssessmentModal');
         if (modal) {
             modal.classList.remove('active');
+            modal.style.display = 'none';
         }
         stopVoiceRecording();
     } catch (err) {
