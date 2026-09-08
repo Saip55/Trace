@@ -221,7 +221,7 @@
                             </div>
 
                             <div style="display: flex; gap: 12px; justify-content: center;">
-                                <button class="btn btn-calm btn-sm open-voice-modal-btn" style="width: 100%;">
+                                <button class="btn btn-calm btn-sm open-voice-modal-btn" style="width: 100%;" onclick="openVoiceAssessmentModal()">
                                     <i class="fas fa-microphone"></i> Try Voice Assessment
                                 </button>
                             </div>
@@ -337,10 +337,10 @@
 
                 <!-- Voice Assessment CTA Banner -->
                 <div class="voice-cta-banner">
-                    <button class="btn btn-calm btn-large open-voice-modal-btn" id="assessmentVoiceBtn">
+                    <button class="btn btn-calm btn-large open-voice-modal-btn" id="assessmentVoiceBtn" onclick="openVoiceAssessmentModal()">
                         <i class="fas fa-microphone"></i> Voice Assessment - Speak Your Concerns
                     </button>
-                    <p>Prefer speaking rather than typing? Speak freely in English, Hindi, or Telugu.</p>
+                    <p>Prefer speaking rather than typing? Speak freely in English, Hindi, Marathi, or Telugu.</p>
                 </div>
 
                 <!-- Main Assessment Card -->
@@ -1574,7 +1574,7 @@
     <!-- Voice Assessment Studio Modal -->
     <div class="modal-overlay" id="voiceAssessmentModal" role="dialog" aria-modal="true" aria-labelledby="voiceModalTitle">
         <div class="modal-card" style="text-align: center; max-width: 620px;">
-            <button class="modal-close-btn" id="closeVoiceModalBtn" aria-label="Close Modal"><i class="fas fa-times"></i></button>
+            <button class="modal-close-btn" id="closeVoiceModalBtn" aria-label="Close Modal" onclick="closeVoiceAssessmentModal()"><i class="fas fa-times"></i></button>
             
             <div style="width: 80px; height: 80px; border-radius: 50%; background: var(--gradient-brand); color: white; display: flex; align-items: center; justify-content: center; font-size: 2.2rem; margin: 0 auto 18px;" id="voiceMicPulseIcon">
                 <i class="fas fa-microphone"></i>
@@ -1587,16 +1587,16 @@
 
             <!-- Language Pills (English, Hindi, Marathi, Telugu) -->
             <div style="display: flex; gap: 10px; justify-content: center; margin-bottom: 20px; flex-wrap: wrap;">
-                <button class="btn btn-sm btn-secondary lang-pill-btn active" data-lang="en-US">
+                <button class="btn btn-sm btn-secondary lang-pill-btn active" data-lang="en-US" onclick="setVoiceLanguage('en-US')">
                     <i class="fas fa-globe"></i> English
                 </button>
-                <button class="btn btn-sm btn-secondary lang-pill-btn" data-lang="hi-IN">
+                <button class="btn btn-sm btn-secondary lang-pill-btn" data-lang="hi-IN" onclick="setVoiceLanguage('hi-IN')">
                     <i class="fas fa-globe"></i> हिंदी (Hindi)
                 </button>
-                <button class="btn btn-sm btn-secondary lang-pill-btn" data-lang="mr-IN">
+                <button class="btn btn-sm btn-secondary lang-pill-btn" data-lang="mr-IN" onclick="setVoiceLanguage('mr-IN')">
                     <i class="fas fa-globe"></i> मराठी (Marathi)
                 </button>
-                <button class="btn btn-sm btn-secondary lang-pill-btn" data-lang="te-IN">
+                <button class="btn btn-sm btn-secondary lang-pill-btn" data-lang="te-IN" onclick="setVoiceLanguage('te-IN')">
                     <i class="fas fa-globe"></i> తెలుగు (Telugu)
                 </button>
             </div>
@@ -1615,7 +1615,7 @@
             </div>
 
             <div style="display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;">
-                <button class="btn btn-calm btn-large" id="applyVoiceTranscriptBtn">
+                <button class="btn btn-calm btn-large" id="applyVoiceTranscriptBtn" onclick="applyVoiceTranscriptToForm()">
                     <i class="fas fa-check"></i> Apply to Assessment Form
                 </button>
                 <button class="btn btn-secondary" onclick="startVoiceRecording()">

@@ -274,6 +274,32 @@ window.openCounselorBookingModal();
 const counselorModal = document.getElementById('counselorBookingModal');
 assert(counselorModal && counselorModal.classList.contains('active'), 'Counselor Booking modal opens');
 
+// Test Voice Assessment Button & Modal Flow
+console.log('\n--- 5b. Voice Assessment Button & Studio Modal ---');
+const assessmentVoiceBtn = document.getElementById('assessmentVoiceBtn');
+const voiceModal = document.getElementById('voiceAssessmentModal');
+assert(assessmentVoiceBtn !== null, 'Voice Assessment CTA Button exists in DOM (#assessmentVoiceBtn)');
+assert(voiceModal !== null, 'Voice Assessment Studio Modal exists in DOM (#voiceAssessmentModal)');
+
+// Trigger voice assessment button click
+assessmentVoiceBtn.click();
+assert(voiceModal.classList.contains('active'), 'Clicking "Voice Assessment - Speak Your Concerns" button activates Voice Assessment Studio modal');
+
+// Switch Voice Language to Marathi
+window.setVoiceLanguage('mr-IN');
+const marathiBtn = document.querySelector('.lang-pill-btn[data-lang="mr-IN"]');
+assert(marathiBtn && marathiBtn.classList.contains('active'), 'Voice language switcher successfully changes to Marathi (mr-IN)');
+
+// Switch Voice Language to Telugu
+window.setVoiceLanguage('te-IN');
+const teluguBtn = document.querySelector('.lang-pill-btn[data-lang="te-IN"]');
+assert(teluguBtn && teluguBtn.classList.contains('active'), 'Voice language switcher successfully changes to Telugu (te-IN)');
+
+// Test Voice Modal Close
+window.closeVoiceAssessmentModal();
+assert(!voiceModal.classList.contains('active'), 'Voice Assessment modal closes properly');
+
+
 // -------------------------------------------------------------
 // TEST GROUP 6: Dead Code & Function Integrity Check
 // -------------------------------------------------------------

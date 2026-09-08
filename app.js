@@ -390,46 +390,67 @@ let currentLanguage = 'en-US';
 let capturedVoiceTranscript = '';
 
 function openVoiceAssessmentModal() {
-    const modal = document.getElementById('voiceAssessmentModal');
-    if (modal) {
-        modal.classList.add('active');
-        startVoiceRecording();
+    try {
+        const modal = document.getElementById('voiceAssessmentModal');
+        if (modal) {
+            modal.classList.add('active');
+            // Ensure child elements exist and are reset
+            const transcriptEl = document.getElementById('voiceTranscriptDisplay');
+            if (transcriptEl) {
+                transcriptEl.textContent = 'Listening... Please speak your thoughts, concerns, or recent experiences.';
+            }
+            try {
+                startVoiceRecording();
+            } catch (err) {
+                console.warn('Speech recognition start failed gracefully:', err);
+            }
+        }
+    } catch (err) {
+        console.error('Error in openVoiceAssessmentModal:', err);
     }
 }
 
 function closeVoiceAssessmentModal() {
-    const modal = document.getElementById('voiceAssessmentModal');
-    if (modal) {
-        modal.classList.remove('active');
+    try {
+        const modal = document.getElementById('voiceAssessmentModal');
+        if (modal) {
+            modal.classList.remove('active');
+        }
         stopVoiceRecording();
+    } catch (err) {
+        console.error('Error closing voice assessment modal:', err);
     }
 }
 
 function setVoiceLanguage(lang) {
-    currentLanguage = lang;
-    const langBtns = document.querySelectorAll('.lang-pill-btn');
-    langBtns.forEach(btn => {
-        if (btn.getAttribute('data-lang') === lang) {
-            btn.classList.add('active');
-        } else {
-            btn.classList.remove('active');
+    try {
+        currentLanguage = lang;
+        const langBtns = document.querySelectorAll('.lang-pill-btn');
+        langBtns.forEach(btn => {
+            if (btn.getAttribute('data-lang') === lang) {
+                btn.classList.add('active');
+            } else {
+                btn.classList.remove('active');
+            }
+        });
+
+        const statusEl = document.getElementById('voiceRecognitionStatus');
+        if (statusEl) {
+            const langNames = {
+                'en-US': 'English',
+                'hi-IN': 'हिंदी (Hindi)',
+                'mr-IN': 'मराठी (Marathi)',
+                'te-IN': 'తెలుగు (Telugu)'
+            };
+            statusEl.innerHTML = `<span style="color: #6366f1;">Switched to ${langNames[lang] || lang}. Listening...</span>`;
         }
-    });
 
-    const statusEl = document.getElementById('voiceRecognitionStatus');
-    if (statusEl) {
-        const langNames = {
-            'en-US': 'English',
-            'hi-IN': 'हिंदी (Hindi)',
-            'mr-IN': 'मराठी (Marathi)',
-            'te-IN': 'తెలుగు (Telugu)'
-        };
-        statusEl.innerHTML = `<span style="color: #6366f1;">Switched to ${langNames[lang] || lang}. Listening...</span>`;
-    }
-
-    if (speechRecognizer) {
-        speechRecognizer.stop();
-        setTimeout(startVoiceRecording, 300);
+        if (speechRecognizer) {
+            try { speechRecognizer.stop(); } catch (e) {}
+            setTimeout(startVoiceRecording, 300);
+        }
+    } catch (err) {
+        console.error('Error setting voice language:', err);
     }
 }
 
@@ -447,69 +468,75 @@ function startVoiceRecording() {
 
     if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
         if (statusEl) {
-            statusEl.innerHTML = `<div style="color: #ef4444; font-weight: 600;"><i class="fas fa-exclamation-triangle"></i> Voice recognition is not supported in this browser. Please use Google Chrome or Microsoft Edge.</div>`;
+            statusEl.innerHTML = `<div style="color: #ef4444; font-weight: 600;"><i class="fas fa-exclamation-triangle"></i> Voice recognition is not supported in this browser. Please use Google Chrome, Edge, or Safari.</div>`;
         }
         return;
     }
 
-    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-    speechRecognizer = new SpeechRecognition();
-    speechRecognizer.continuous = true;
-    speechRecognizer.interimResults = true;
-    speechRecognizer.lang = currentLanguage;
-
-    speechRecognizer.onstart = () => {
-        if (micIcon) micIcon.classList.add('pulse');
-        if (statusEl) statusEl.innerHTML = `<span style="color: #10b981; font-weight: 600;"><i class="fas fa-circle fa-beat" style="color: #10b981; font-size: 0.7rem;"></i> Microphone Active • Speak naturally</span>`;
-    };
-
-    speechRecognizer.onresult = (event) => {
-        let interimText = '';
-        for (let i = event.resultIndex; i < event.results.length; i++) {
-            const transcript = event.results[i][0].transcript;
-            if (event.results[i].isFinal) {
-                capturedVoiceTranscript += transcript + ' ';
-            } else {
-                interimText += transcript;
-            }
-        }
-
-        const fullText = (capturedVoiceTranscript + interimText).trim();
-        if (transcriptEl) {
-            transcriptEl.textContent = `"${fullText}"`;
-        }
-
-        // Live Crisis Word Detection in Voice
-        checkDistressKeywords(fullText);
-    };
-
-    speechRecognizer.onerror = (event) => {
-        console.warn('Speech recognition warning:', event.error);
-        if (statusEl) {
-            if (event.error === 'not-allowed') {
-                statusEl.innerHTML = `<span style="color: #ef4444;">Microphone permission was denied. Please allow microphone access in your browser settings.</span>`;
-            } else if (event.error === 'no-speech') {
-                statusEl.innerHTML = `<span style="color: #f59e0b;">No speech detected. Please speak closer to your microphone.</span>`;
-            } else {
-                statusEl.innerHTML = `<span style="color: #64748b;">Notice: ${event.error}. Click Restart to try again.</span>`;
-            }
-        }
-    };
-
-    speechRecognizer.onend = () => {
-        if (micIcon) micIcon.classList.remove('pulse');
-    };
-
     try {
+        if (speechRecognizer) {
+            try { speechRecognizer.stop(); } catch (e) {}
+        }
+        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+        speechRecognizer = new SpeechRecognition();
+        speechRecognizer.continuous = true;
+        speechRecognizer.interimResults = true;
+        speechRecognizer.lang = currentLanguage;
+
+        speechRecognizer.onstart = () => {
+            if (micIcon) micIcon.classList.add('pulse');
+            if (statusEl) statusEl.innerHTML = `<span style="color: #10b981; font-weight: 600;"><i class="fas fa-circle fa-beat" style="color: #10b981; font-size: 0.7rem;"></i> Microphone Active • Speak naturally</span>`;
+        };
+
+        speechRecognizer.onresult = (event) => {
+            let interimText = '';
+            for (let i = event.resultIndex; i < event.results.length; i++) {
+                const transcript = event.results[i][0].transcript;
+                if (event.results[i].isFinal) {
+                    capturedVoiceTranscript += transcript + ' ';
+                } else {
+                    interimText += transcript;
+                }
+            }
+
+            const fullText = (capturedVoiceTranscript + interimText).trim();
+            if (transcriptEl) {
+                transcriptEl.textContent = `"${fullText}"`;
+            }
+
+            // Live Crisis Word Detection in Voice
+            checkDistressKeywords(fullText);
+        };
+
+        speechRecognizer.onerror = (event) => {
+            console.warn('Speech recognition warning:', event.error);
+            if (statusEl) {
+                if (event.error === 'not-allowed') {
+                    statusEl.innerHTML = `<span style="color: #ef4444;"><i class="fas fa-microphone-slash"></i> Microphone permission was denied. Please allow microphone access in your browser settings.</span>`;
+                } else if (event.error === 'no-speech') {
+                    statusEl.innerHTML = `<span style="color: #f59e0b;"><i class="fas fa-volume-mute"></i> No speech detected. Please speak closer to your microphone.</span>`;
+                } else {
+                    statusEl.innerHTML = `<span style="color: #64748b;">Status: ${event.error}. Click Restart to try again.</span>`;
+                }
+            }
+        };
+
+        speechRecognizer.onend = () => {
+            if (micIcon) micIcon.classList.remove('pulse');
+        };
+
         speechRecognizer.start();
     } catch (e) {
         console.warn('Recognition start exception:', e);
+        if (statusEl) {
+            statusEl.innerHTML = `<span style="color: #ef4444;"><i class="fas fa-exclamation-circle"></i> Microphone initialization notice: ${e.message || 'Ready'}. Click Restart to retry.</span>`;
+        }
     }
 }
 
 function stopVoiceRecording() {
     if (speechRecognizer) {
-        speechRecognizer.stop();
+        try { speechRecognizer.stop(); } catch (e) {}
         speechRecognizer = null;
     }
 }
