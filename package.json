@@ -4,6 +4,7 @@
   "description": "Real-Time Stress & Trauma Assessment Portal for NHAA Victims",
   "main": "index.html",
   "scripts": {
+    "test": "node test/features.test.js",
     "start": "npx -y serve . -l 8085",
     "dev": "npx -y serve . -l 8085",
     "serve:python": "python3 -m http.server 8085"
@@ -16,5 +17,8 @@
     "sih2026"
   ],
   "author": "SIH 2026 Participant",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "jsdom": "^30.0.1"
+  }
 }

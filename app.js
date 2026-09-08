@@ -906,8 +906,6 @@ function checkDistressKeywords(text, showModalImmediately = true) {
     }
     return isCrisis;
 }
-    return isCrisis;
-}
 
 function triggerCrisisModal(title, message) {
     const modal = document.getElementById('crisisAlertModal');
@@ -1132,7 +1130,8 @@ function showToast(message, type = 'success') {
     toast.innerHTML = `<i class="fas fa-${icon}"></i> ${message}`;
     document.body.appendChild(toast);
 
-    requestAnimationFrame(() => {
+    const rAF = typeof requestAnimationFrame !== 'undefined' ? requestAnimationFrame : (cb => setTimeout(cb, 16));
+    rAF(() => {
         toast.style.opacity = '1';
         toast.style.transform = 'translateX(-50%) translateY(0)';
     });
@@ -1571,4 +1570,29 @@ function downloadClinicalDossier() {
 
     doc.save(`MindCare_BioSomatic_Dossier_${score}.pdf`);
     showToast('📄 Bio-Somatic Clinical Dossier PDF downloaded successfully!', 'success');
+}
+
+// Expose functions globally for inline HTML handlers and automated tests
+if (typeof window !== 'undefined') {
+    window.initAssessmentForm = typeof initAssessmentForm !== 'undefined' ? initAssessmentForm : null;
+    window.handleAssessmentSubmit = typeof handleAssessmentSubmit !== 'undefined' ? handleAssessmentSubmit : null;
+    window.generateClinicalPdf = typeof generateClinicalPdf !== 'undefined' ? generateClinicalPdf : null;
+    window.openVoiceAssessmentModal = typeof openVoiceAssessmentModal !== 'undefined' ? openVoiceAssessmentModal : null;
+    window.closeVoiceAssessmentModal = typeof closeVoiceAssessmentModal !== 'undefined' ? closeVoiceAssessmentModal : null;
+    window.setVoiceLanguage = typeof setVoiceLanguage !== 'undefined' ? setVoiceLanguage : null;
+    window.startVoiceRecording = typeof startVoiceRecording !== 'undefined' ? startVoiceRecording : null;
+    window.stopVoiceRecording = typeof stopVoiceRecording !== 'undefined' ? stopVoiceRecording : null;
+    window.applyVoiceTranscriptToForm = typeof applyVoiceTranscriptToForm !== 'undefined' ? applyVoiceTranscriptToForm : null;
+    window.initBreathingStudio = typeof initBreathingStudio !== 'undefined' ? initBreathingStudio : null;
+    window.toggleBreathingSession = typeof toggleBreathingSession !== 'undefined' ? toggleBreathingSession : null;
+    window.pauseBreathingSession = typeof pauseBreathingSession !== 'undefined' ? pauseBreathingSession : null;
+    window.resetBreathingSession = typeof resetBreathingSession !== 'undefined' ? resetBreathingSession : null;
+    window.initAIChatbot = typeof initAIChatbot !== 'undefined' ? initAIChatbot : null;
+    window.handleChatSubmit = typeof handleChatSubmit !== 'undefined' ? handleChatSubmit : null;
+    window.generateEmpatheticResponse = typeof generateEmpatheticResponse !== 'undefined' ? generateEmpatheticResponse : null;
+    window.checkDistressKeywords = typeof checkDistressKeywords !== 'undefined' ? checkDistressKeywords : null;
+    window.triggerCrisisModal = typeof triggerCrisisModal !== 'undefined' ? triggerCrisisModal : null;
+    window.openDbtRegistrationModal = typeof openDbtRegistrationModal !== 'undefined' ? openDbtRegistrationModal : null;
+    window.openCounselorBookingModal = typeof openCounselorBookingModal !== 'undefined' ? openCounselorBookingModal : null;
+    window.downloadBioSomaticReportPdf = typeof downloadBioSomaticReportPdf !== 'undefined' ? downloadBioSomaticReportPdf : null;
 }

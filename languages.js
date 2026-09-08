@@ -24,7 +24,7 @@ const LanguageService = {
     // Multilingual Crisis & Distress Keywords Scanner Dictionary
     distressKeywords: {
         en: [
-            'suicide', 'suicidal', 'kill myself', 'end my life', 'self-harm', 'self harm',
+            'suicide', 'suicidal', 'kill myself', 'end my life', 'ending my life', 'self-harm', 'self harm',
             'cutting', 'want to die', 'dont want to live', "don't want to live", 'better off dead',
             'no reason to live', 'end it all', 'take my life', 'hopeless', 'overdose'
         ],
@@ -531,14 +531,21 @@ const LanguageService = {
     }
 };
 
-// Global helper
+// Global helper & Window attachment
 function setGlobalLanguage(langCode) {
     LanguageService.setLanguage(langCode);
 }
 
+if (typeof window !== 'undefined') {
+    window.LanguageService = LanguageService;
+    window.setGlobalLanguage = setGlobalLanguage;
+}
+
 // Auto-initialize when DOM is loaded
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', () => LanguageService.init());
-} else {
-    LanguageService.init();
+if (typeof document !== 'undefined') {
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', () => LanguageService.init());
+    } else {
+        LanguageService.init();
+    }
 }
